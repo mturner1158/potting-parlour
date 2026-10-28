@@ -57,8 +57,32 @@ The following users and their user stories have been considered:
 This section shows the design choices I made as part of the design of this website, alongside wireframes to show the rough layout of each page before construction of the website. Through all these choices, I have considered the 5 planes of user experience to ensure a smooth and enjoyable experience for all users of the site.
 
 ### Fonts, Colours and Structure 
+The colour theme of this site is as follows:
 
-[ add all design choices for project ]
+|Colour|Hex Code|Description   |
+|:-----|:-------|:-------------|
+|Dark green|`#2F4A3A`|Primary colour|
+|Deep forest green|`#243B2D`|Hover colour|
+|Sage green|`#5C7A66`|Secondary green for accents where necessary|
+|Pale pink|`#F4DDD9`|Primarily backgrounds or contract|
+|Dusty pink|`#E8C4BE`|Secondary pink for hovers|
+|Tan|`#C9B08A`|Second background colour |
+|Sand|`#EADFCB`|Secondary tan|
+|Cream|`#FBF8F4`|When clear backgrounds are required|
+|Charcoal green|`#1F2A24`|Body text|
+|Grey green|`#5F6B64`|Secondary text|
+|Stone|`#E3DCD2`|For dividers|
+|Leaf green|`#3E8E5A`|Success messages|
+|Amber|`#D9962B`|Warning messages|
+|Brick red|`#C0443A`|Error messages|
+|Steel blue|`#4A7C9B`|Infomation|
+
+There are two fonts used through this site:
+
+* Yeseva One for headings and key text
+* Josefin Sans for blocks of text and information
+
+The site will have the following pages:
 
 ### Wireframes 
 This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens. 
