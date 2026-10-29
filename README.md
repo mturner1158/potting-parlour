@@ -84,6 +84,17 @@ There are two fonts used through this site:
 
 The site will have the following pages:
 
+* A landing page 
+* A products page
+* A product details page 
+* A login, sign up and sign out page
+* A checkout 
+* A checkout confirmation 
+* An order history 
+* A tracking dashbaord 
+
+There will also be notifcations to reassure users an action has happened or they are notified of a blocked action. 
+
 ### Wireframes 
 This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens. 
 
