@@ -126,7 +126,7 @@ This section outlines key features on each page.
 ## Bugs 
 The following bugs occured during the design of this site: 
 
-[ add bugs as found ]
+1. Footer not sticking to bottom of page - UNRESOLVED
 
 ## Deployment 
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
