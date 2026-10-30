@@ -122,6 +122,27 @@ body {
   background-color: var(--colour-secondary);
 }
 
+.card {
+    background-color: var(--colour-accent);
+}
+
+.plant-name {
+    color: var(--colour-primary);
+    font-weight: bold;
+}
+
+.plant-s-name {
+    font-style: italic;
+    color: var(--colour-primary-light);
+}
+
+.plant-cat {
+    color: var(--colour-secondary-dark);
+}
+
+.plant-cat a {
+    color: var(--colour-secondary-dark);
+}
 
 
 /* footer */
