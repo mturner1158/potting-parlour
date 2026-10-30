@@ -4,23 +4,27 @@
 
 /* set colours */
 :root {
-  --color-primary: #2F4A3A;
-  --color-primary-hover: #243B2D;
-  --color-primary-light: #5C7A66;
-  --color-secondary: #F4DDD9;
-  --color-secondary-dark: #E8C4BE;
-  --color-accent: #C9B08A;
-  --color-accent-light: #EADFCB;
 
-  --color-bg: #FBF8F4;
-  --color-text: #1F2A24;
-  --color-text-muted: #5F6B64;
+    --primary-font: "Josefin Sans", sans-serif;
+    --secondary-font: "Yeseva One", serif;
 
-  --color-success: #3E8E5A;
-  --color-warning: #D9962B;
-  --color-error: #C0443A;
-  --color-info: #4A7C9B;
-  --color-sale: #B5475A;
+    --colour-primary: #2F4A3A;
+    --colour-primary-hover: #243B2D;
+    --colour-primary-light: #5C7A66;
+    --colour-secondary: #F4DDD9;
+    --colour-secondary-dark: #E8C4BE;
+    --colour-accent: #C9B08A;
+    --colour-accent-light: #EADFCB;
+
+    --colour-bg: #FBF8F4;
+    --colour-text: #1F2A24;
+    --colour-text-muted: #5F6B64;
+
+    --colour-success: #3E8E5A;
+    --colour-warning: #D9962B;
+    --colour-error: #C0443A;
+    --colour-info: #4A7C9B;
+    --colour-sale: #B5475A;
 }
 
 /* Global styles */
@@ -29,4 +33,60 @@ body {
     background: url('/media/background.jpg') repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px);
+}
+
+
+/* index */
+
+.content-box {
+  min-height: 100px;
+  border: 1px solid var(--colour-primary);
+  border-radius: 5px;
+  background: var(--colour-primary);
+}
+
+.logo-text {
+    font-family: var(--primary-font);
+    color: var(--colour-accent);
+}
+
+.sub-header {
+    font-family: var(--primary-font);
+    color: var(--colour-accent);
+}
+
+.home-btn {
+    color: var(--colour-accent);
+    border: 1px solid var(--colour-primary);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.home-btn a {
+    color: var(--colour-accent);
+    text-decoration: none;
+}
+
+.home-btn:hover {
+    color: var(--colour-primary);
+    background-color: var(--colour-secondary-dark);
+    border: 1px solid var(--colour-secondary-dark);
+    border-radius: 5px;
+}
+
+.home-btn:hover a {
+    color: var(--colour-primary);
+    text-decoration: none;
+}
+
+/* footer */
+
+#footer {
+  border: 1px solid var(--colour-primary);
+  min-height: 24px;
+  background: var(--colour-primary);
+}
+
+#footer a {
+    color: var(--colour-secondary);
 }
