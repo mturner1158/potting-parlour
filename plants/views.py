@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Plant, Category
 
@@ -11,6 +11,17 @@ def all_plants(request):
     template = "plants/plants.html"
     context = {
         "plants": plants
+    }
+
+    return render(request, template, context)
+
+def plant_detail(request, slug):
+    plant = get_object_or_404(Plant, slug=slug, is_active=True)
+
+
+    template = "plants/plants_detail.html"
+    context = {
+        "plants": plant
     }
 
     return render(request, template, context)
