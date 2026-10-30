@@ -21,7 +21,7 @@ def plant_detail(request, slug):
 
     template = "plants/plants_detail.html"
     context = {
-        "plants": plant
+        "plant": plant
     }
 
     return render(request, template, context)
