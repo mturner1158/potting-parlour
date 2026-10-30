@@ -79,6 +79,31 @@ body {
     text-decoration: none;
 }
 
+.login-btn {
+    color: var(--colour-secondary);
+    margin-top: 10px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.login-btn a {
+    color: var(--colour-secondary);
+    text-decoration: none;
+}
+
+.login-btn:hover {
+    color: var(--colour-secondary);
+    background-color: var(--colour-primary-hover);
+    border: 1px solid var(--colour-primary-hover);
+    border-radius: 5px;
+}
+
+.login-btn:hover a {
+    color: var(--colour-secondary);
+    text-decoration: none;
+}
+
+
 /* footer */
 
 #footer {
