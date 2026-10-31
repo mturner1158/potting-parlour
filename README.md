@@ -84,21 +84,71 @@ There are two fonts used through this site:
 
 The site will have the following pages:
 
-* A landing page 
+* A home page 
 * A products page
 * A product details page 
 * A login, sign up and sign out page
-* A checkout 
+* A basket
+* A checkout page
 * A checkout confirmation 
 * An order history 
 * A tracking dashbaord 
+* A tracking details page for a specific plant
 
 There will also be notifcations to reassure users an action has happened or they are notified of a blocked action. 
 
 ### Wireframes 
 This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens. 
 
-[section for each wireframe]
+#### Home
+This is the landing page for the site.
+
+<img src="./static/images/wireframe-home.png">
+
+#### Plants
+This page shows all the plants on sale on the site. 
+
+<img src="./static/images/wireframe-plants.png">
+
+#### Plant Details
+This page shows all the details for a chosen plant. 
+
+<img src="./static/images/wireframe-plant-detail.png">
+
+#### Login / Signup / Signout
+This page shows the general style of all authentication pages. 
+
+<img src="./static/images/wireframe-login.png">
+
+#### Basket
+This page shows how the basket will look once users add plant to purchase. 
+
+<img src="./static/images/wireframe-basket.png">
+
+#### Checkout 
+This page shows how the checkout will look. 
+
+<img src="./static/images/wireframe-checkout.png">
+
+#### Checkout Confirmation 
+This page shows how confirmation will look after submitting a payment. 
+
+<img src="./static/images/wireframe-confirmation.png">
+
+#### Order History
+This page shows previous orders for a logged in user. 
+
+<img src="./static/images/wireframe-history.png">
+
+#### Tracking Dashboard 
+This page shows the orders and tracking details for a logged in user. 
+
+<img src="./static/images/wireframe-tracking.png">
+
+#### Tracking Details
+This page shows the tracking history of a specific plant for a logged in user. 
+
+<img src="./static/images/wireframe-tracking-details.png">
 
 ## Frameworks and Languages 
 This section highlights all the languages and frameworks used in this project. 
