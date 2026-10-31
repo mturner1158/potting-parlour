@@ -108,7 +108,20 @@ This section highlights all the languages and frameworks used in this project.
 ## Data Model
 In this project, my application will utilise a PostgreSQL database provided by the Code Institute. I have created the following tables and provided a graphical representation of how they are connected. 
 
-[ add entity relationship diagram and explanations of data tables]
+<img src="./static/images/data-model.png">
+
+|Table|Description|
+|:----|:----------|
+|User|Django user table for authentication|
+|Profile|Additional data for profiles such as address and phone number for speedy checkout|
+|Categories|Custom groupings to the plants on the site|
+|Plant|All plants for sale and additional fields for care instructions|
+|Order|The order details such as delivery address, costs and stripe pid|
+|OrderLineItem|The specific plants bought in an order|
+|OwnedPlant|A record of plants bought by a user and tracking fields to give a place to care for a plant|
+|WateringLog|A record of each time a user marks a plant as watered and any notes associated with it at that time|
+
+Relationships are shown by the lines joining the tables, with a 1 on each end meaning a one-to-one connection and a 1 and a cross on the end meaning a one-to-many connection.
 
 ## Security 
 
