@@ -32,7 +32,6 @@
 body {
     background: url('/media/background.jpg') repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px);
 }
 
 .site-main {
@@ -144,6 +143,59 @@ body {
     color: var(--colour-secondary-dark);
 }
 
+.plant-detail-header {
+    font-size: 36px;
+    color: var(--colour-primary);
+    font-family: var(--secondary-font);
+}
+
+.plant-detail-price {
+    font-size: 30px;
+    color: var(--colour-primary);
+    font-family: var(--secondary-font);
+}
+
+.plant-detail-sn {
+    font-size: 18px;
+    font-family: var(--secondary-font);
+    color: var(--colour-primary-light);
+    font-style: italic;
+}
+
+.plant-detail-key-info { 
+    border: 1px solid var(--colour-primary);
+    margin: 2px;
+    border-radius: 10px;
+    background-color: var(--colour-primary);
+    font-family: var(--primary-font);
+    color: var(--colour-secondary);
+    padding: 2px;
+    min-height: 60px;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.plant-detail-description {
+    font-family: var(--primary-font);
+    color: var(--colour-primary);
+}
+
+.detail-btn {
+    display: inline-block;
+    padding: 2px;
+    color: var(--colour-primary);
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.detail-btn:hover {
+    background-color: var(--colour-primary);
+    color: var(--colour-secondary);
+    border-color: var(--colour-primary);
+}
 
 /* footer */
 

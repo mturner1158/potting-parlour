@@ -189,7 +189,7 @@ This section outlines key features on each page.
 ## Bugs 
 The following bugs occured during the design of this site: 
 
-1. Footer not sticking to bottom of page - UNRESOLVED
+1. Footer not sticking to bottom of page - height tag in css was causing it and has been removed
 
 ## Deployment 
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
