@@ -154,10 +154,18 @@ body {
     margin-bottom: 0;
 }
 
+.card-img-top {
+    width: 100%;
+    aspect-ratio: 1 / 1;   /* square; use 4 / 5 for taller, 4 / 3 for wider */
+    object-fit: cover;
+    object-position: center;
+}
+
 .plant-name {
     color: var(--colour-secondary);
     font-weight: 550;
     font-family: var(--secondary-font);
+    min-height: 2.6em;
 }
 
 .plant-price {
