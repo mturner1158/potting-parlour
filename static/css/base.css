@@ -51,6 +51,7 @@ body {
     color: var(--colour-secondary);
     font-family: var(--secondary-font);
 }
+
 /* index */
 
 .content-box {
@@ -136,21 +137,45 @@ body {
 }
 
 .card {
-    background-color: var(--colour-accent);
+    background-color: var(--colour-primary);
+}
+
+.card-body {
+    padding: 0.75rem 1rem 0.5rem;
+}
+
+.card-footer {
+    padding: 0.5rem 1rem;
+}
+
+.card-body h4,
+.card-body p,
+.card-footer p {
+    margin-bottom: 0;
 }
 
 .plant-name {
-    color: var(--colour-primary);
-    font-weight: bold;
+    color: var(--colour-secondary);
+    font-weight: 550;
+    font-family: var(--secondary-font);
+}
+
+.plant-price {
+    color: var(--colour-secondary);
+    font-family: var(--secondary-font);
+    font-size: 18px;
 }
 
 .plant-s-name {
     font-style: italic;
-    color: var(--colour-primary-light);
+    color: var(--colour-accent-light);
+    margin-top: 0.25rem;
 }
 
 .plant-cat {
     color: var(--colour-secondary-dark);
+    font-size: 12px;
+    font-family: var(--primary-font);
 }
 
 .plant-cat a {

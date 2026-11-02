@@ -34,7 +34,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-8"><h4 class="plant-name">{{ plant.name }}</h4></div>
-                            <div class="col-4"><p>{{ plant.price }}</p></div>
+                            <div class="col-4"><p class="plant-price"> £ {{ plant.price }}</p></div>
                         </div>
                         <div class="row">
                             <p class="plant-s-name">{{ plant.scientific_name }}</p>
@@ -42,13 +42,13 @@
                     </div>
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-4 plant-cat">
-                                <p>{{ plant.light }}</p>
+                            <div class="col-5 plant-cat">
+                                <p>{{ plant.get_light_display }}</p>
                             </div>
                             <div class="col-4 plant-cat">
-                                <p>{{ plant.difficulty }}</p>
+                                <p>{{ plant.get_difficulty_display }}</p>
                             </div>
-                            <div class="col-4 plant-cat text-right">
+                            <div class="col-3 plant-cat text-end">
                                 <a href="{% url 'plant_detail' plant.slug %}"><i class="fa-solid fa-circle-arrow-right"></i></a>
                             </div>
                         </div>
