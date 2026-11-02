@@ -46,7 +46,32 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-    <header class="container-fluid fixed-top"></header>
+    <header class="fixed-top p-0">
+    <nav class="navbar bg-1 fg-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">Potting Parlour</span>
+            </a>
+
+            <ul class="list-inline list-unstyled text-center mb-0 ms-auto">
+                <li class="list-inline-item">
+                    <a class="nav-link" href="">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <p class="my-0">Tracking</p>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="nav-link" href="">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                        <p class="my-0">£0.00</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="header-spacer"></div>
 
     {% if messages %}
     <div class="message-container"></div>
@@ -59,8 +84,8 @@
     {% block content %}
     {% endblock %}
 
-    
-    
+
+
     <!-- Footer -->
     <footer id="footer" class="mt-auto">
         <div class="container">
