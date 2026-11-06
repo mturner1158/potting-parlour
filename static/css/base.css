@@ -32,6 +32,7 @@
 body {
     background: url('/media/background.jpg') repeat center center fixed;
     background-size: cover;
+    font-family: var(--primary-font);
 }
 
 .site-main {
@@ -156,7 +157,7 @@ body {
 
 .card-img-top {
     width: 100%;
-    aspect-ratio: 1 / 1;   /* square; use 4 / 5 for taller, 4 / 3 for wider */
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     object-position: center;
 }
@@ -282,6 +283,48 @@ body {
 button.detail-btn {
     background-color: transparent;
     font: inherit;
+}
+
+
+/* basket styles */
+
+.basket-table-wrap {
+    border: 1px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.basket-table {
+    --bs-table-bg: transparent;
+    color: var(--colour-primary);
+}
+
+.basket-table thead th {
+    background-color: var(--colour-primary);
+    color: var(--colour-secondary);
+    border: none;
+}
+
+.basket-table tbody td {
+    padding: 1rem 0.75rem;
+    border-color: var(--colour-primary);
+}
+
+.basket-table tfoot th,
+.basket-table tfoot td {
+    border-top: 2px solid var(--colour-primary);
+}
+
+.basket-plant-name {
+    font-family: var(--secondary-font);
+    text-decoration: none;
+    color: var(--colour-primary-hover);
+    font-size: 20px;
+}
+
+.basket-s-name {
+    color: var(--colour-primary-light);
+    font-style: italic;
 }
 
 /* footer */
