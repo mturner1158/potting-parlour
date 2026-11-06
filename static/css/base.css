@@ -209,7 +209,7 @@ body {
     font-style: italic;
 }
 
-.plant-detail-key-info { 
+.plant-detail-key-info {
     border: 1px solid var(--colour-primary);
     margin: 2px;
     border-radius: 10px;
@@ -219,7 +219,7 @@ body {
     padding: 2px;
     min-height: 60px;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
 }
 
@@ -252,7 +252,7 @@ body {
     background-color: var(--colour-primary);
     border: 1px solid var(--colour-primary);
     border-radius: 10px;
-    overflow: hidden;          /* clips the inner corners to the rounded edge */
+    overflow: hidden;
 }
 
 .qty-box .btn,
@@ -277,6 +277,11 @@ body {
 .qty_input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+button.detail-btn {
+    background-color: transparent;
+    font: inherit;
 }
 
 /* footer */
