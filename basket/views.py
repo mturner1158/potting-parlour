@@ -55,10 +55,30 @@ def adjust_basket(request, plant_id):
 
     if quantity > 0:
         basket[key] = quantity
-        messages.success(request, f"Updated {plant.name} in your basket")
+        messages.success(
+            request, f"Updated {plant.name} in your basket"
+            )
     else:
         basket.pop(key, None)
-        messages.success(request, f"Removed {plant.name} from your basket")
+        messages.success(
+            request, f"Removed {plant.name} from your basket"
+            )
+
+    request.session["basket"] = basket
+    return redirect("view_basket")
+
+
+@require_POST
+def remove_from_basket(request, plant_id):
+    """Remove a plant from the basket"""
+    basket = request.session.get("basket", {})
+
+    if basket.pop(str(plant_id), None) is not None:
+        plant = Plant.objects.filter(pk=plant_id).first()
+        name = plant.name if plant else "Item"
+        messages.success(
+            request, f"Removed {name} from your basket"
+            )
 
     request.session["basket"] = basket
     return redirect("view_basket")
