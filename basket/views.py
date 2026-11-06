@@ -4,13 +4,14 @@ from django.views.decorators.http import require_POST
 
 from plants.models import Plant
 
-# Create your views here.
+
 def view_basket(request):
     """Renders the basket page"""
 
     template = 'basket/basket.html'
 
     return render(request, template)
+
 
 @require_POST
 def add_to_basket(request, plant_id):
@@ -42,3 +43,22 @@ def add_to_basket(request, plant_id):
     request.session['basket'] = basket
     return redirect(redirect_url)
 
+
+@require_POST
+def adjust_basket(request, plant_id):
+    """Set a plant's amount in the basket (anything below 1 removes it)"""
+    plant = get_object_or_404(Plant, pk=plant_id)
+    quantity = int(request.POST.get("quantity"))
+
+    basket = request.session.get("basket", {})
+    key = str(plant.pk)
+
+    if quantity > 0:
+        basket[key] = quantity
+        messages.success(request, f"Updated {plant.name} in your basket")
+    else:
+        basket.pop(key, None)
+        messages.success(request, f"Removed {plant.name} from your basket")
+
+    request.session["basket"] = basket
+    return redirect("view_basket")
