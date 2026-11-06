@@ -1,7 +1,7 @@
 # Project 4: Potting Parlour
-Potting Parlour is an e-commerce platform which allows users to buy plants and track key activities such as watering, light exposure, and owned plants. 
+Potting Parlour is an e-commerce platform which allows users to buy plants and track key activities such as watering, light exposure, and owned plants.
 
-## Table of Contents 
+## Table of Contents
 
 - [Project Goals](#project-goals)
 - [User Experience](#user-experience)
@@ -17,26 +17,26 @@ Potting Parlour is an e-commerce platform which allows users to buy plants and t
 - [Credits & Disclaimer](#credits-and-disclaimer)
 
 ## Project Goals
-This web application will allow users to browse a shop selling various plants, purchase a plant and track activities relating to the plant once it has been purchased. A user can sign up to purchase plants and track additional activities, whilst store owners can add, edit and remove any listings on the site. 
+This web application will allow users to browse a shop selling various plants, purchase a plant and track activities relating to the plant once it has been purchased. A user can sign up to purchase plants and track additional activities, whilst store owners can add, edit and remove any listings on the site.
 
-### User Goals 
-Users have the following goals: 
-* Browse plants for sale 
-* Purchase a plant 
-* See order history 
-* Track activities related to their purchases 
+### User Goals
+Users have the following goals:
+* Browse plants for sale
+* Purchase a plant
+* See order history
+* Track activities related to their purchases
 
-### Site Goals 
-Site maners have the following goals: 
-* Add, edit or remove plants for sale 
+### Site Goals
+Site maners have the following goals:
+* Add, edit or remove plants for sale
 
-## User Experience 
+## User Experience
 This section shows the considerations for each type of user that would use the website and the experiences they would have.
 
-### Target Audience 
+### Target Audience
 The target audience for this site are users who want to purchase plants and track the activities to take care of them.
 
-### Expectactions 
+### Expectactions
 Users of the site can expect:
 * Easy to use navigation
 * Clear layout
@@ -44,7 +44,7 @@ Users of the site can expect:
 * Responsiveness to view the site on any device
 
 ### User Stories
-The following users and their user stories have been considered: 
+The following users and their user stories have been considered:
 
 | ID | User Type | User Persona | User Stories |
 |:---|:---|:---|:---|
@@ -53,10 +53,10 @@ The following users and their user stories have been considered:
 | User 3 | Plant Owner | A plant owner is someone who has purchased a plant from the store through a logged-in account. | <ul><li>As a plant owner, I want a dashboard showing key details about my plants so that I can quickly understand their health.</li><li>As a plant owner, I want to mark a plant as watered so that I know when I last watered it.</li><li>As a plant owner, I want to add a nickname to my plant so that I can tell my plants apart.</li><li>As a plant owner, I want to see the plant history so that I understand what has happened to the plant.</li><li>As a plant owner, I want to see the ideal conditions for my plant so that I can take care of it.</li><li>As a plant owner, I want to remove a plant so that it does not clutter my dashboard if I no longer have it.</li></ul> |
 | User 4 | Shop Owner | A shop owner is someone who manages the stock available in the store. | <ul><li>As a shop owner, I want to add entries so that I can manage my store.</li><li>As a shop owner, I want to edit entries so that I can manage my store.</li><li>As a shop owner, I want to remove entries so that I can manage my store.</li></ul> |
 
-## Design 
+## Design
 This section shows the design choices I made as part of the design of this website, alongside wireframes to show the rough layout of each page before construction of the website. Through all these choices, I have considered the 5 planes of user experience to ensure a smooth and enjoyable experience for all users of the site.
 
-### Fonts, Colours and Structure 
+### Fonts, Colours and Structure
 The colour theme of this site is as follows:
 
 |Colour|Hex Code|Description   |
@@ -84,21 +84,21 @@ There are two fonts used through this site:
 
 The site will have the following pages:
 
-* A home page 
+* A home page
 * A products page
-* A product details page 
+* A product details page
 * A login, sign up and sign out page
 * A basket
 * A checkout page
-* A checkout confirmation 
-* An order history 
-* A tracking dashbaord 
+* A checkout confirmation
+* An order history
+* A tracking dashbaord
 * A tracking details page for a specific plant
 
-There will also be notifcations to reassure users an action has happened or they are notified of a blocked action. 
+There will also be notifcations to reassure users an action has happened or they are notified of a blocked action.
 
-### Wireframes 
-This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens. 
+### Wireframes
+This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens.
 
 #### Home
 This is the landing page for the site.
@@ -106,57 +106,57 @@ This is the landing page for the site.
 <img src="./static/images/wireframe-home.png">
 
 #### Plants
-This page shows all the plants on sale on the site. 
+This page shows all the plants on sale on the site.
 
 <img src="./static/images/wireframe-plants.png">
 
 #### Plant Details
-This page shows all the details for a chosen plant. 
+This page shows all the details for a chosen plant.
 
 <img src="./static/images/wireframe-plant-detail.png">
 
 #### Login / Signup / Signout
-This page shows the general style of all authentication pages. 
+This page shows the general style of all authentication pages.
 
 <img src="./static/images/wireframe-login.png">
 
 #### Basket
-This page shows how the basket will look once users add plant to purchase. 
+This page shows how the basket will look once users add plant to purchase.
 
 <img src="./static/images/wireframe-basket.png">
 
-#### Checkout 
-This page shows how the checkout will look. 
+#### Checkout
+This page shows how the checkout will look.
 
 <img src="./static/images/wireframe-checkout.png">
 
-#### Checkout Confirmation 
-This page shows how confirmation will look after submitting a payment. 
+#### Checkout Confirmation
+This page shows how confirmation will look after submitting a payment.
 
 <img src="./static/images/wireframe-confirmation.png">
 
 #### Order History
-This page shows previous orders for a logged in user. 
+This page shows previous orders for a logged in user.
 
 <img src="./static/images/wireframe-history.png">
 
-#### Tracking Dashboard 
-This page shows the orders and tracking details for a logged in user. 
+#### Tracking Dashboard
+This page shows the orders and tracking details for a logged in user.
 
 <img src="./static/images/wireframe-tracking.png">
 
 #### Tracking Details
-This page shows the tracking history of a specific plant for a logged in user. 
+This page shows the tracking history of a specific plant for a logged in user.
 
 <img src="./static/images/wireframe-tracking-details.png">
 
-## Frameworks and Languages 
-This section highlights all the languages and frameworks used in this project. 
+## Frameworks and Languages
+This section highlights all the languages and frameworks used in this project.
 
 [list frameworks and languages used in project]
 
 ## Data Model
-In this project, my application will utilise a PostgreSQL database provided by the Code Institute. I have created the following tables and provided a graphical representation of how they are connected. 
+In this project, my application will utilise a PostgreSQL database provided by the Code Institute. I have created the following tables and provided a graphical representation of how they are connected.
 
 <img src="./static/images/data-model.png">
 
@@ -173,60 +173,60 @@ In this project, my application will utilise a PostgreSQL database provided by t
 
 Relationships are shown by the lines joining the tables, with a 1 on each end meaning a one-to-one connection and a 1 and a cross on the end meaning a one-to-many connection.
 
-## Security 
+## Security
 
 [ add all security measures taken ]
 
 ## Features
-This section outlines key features on each page. 
+This section outlines key features on each page.
 
 [ add common and page specific features ]
 
-## Testing 
+## Testing
 
 [ add separate file for testing ]
 
-## Bugs 
-The following bugs occured during the design of this site: 
+## Bugs
+The following bugs occured during the design of this site:
 
 1. Footer not sticking to bottom of page - height tag in css was causing it and has been removed
 
-## Deployment 
+## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
 
-### Cloning the Repository 
-To take your own version of this repository, you will have to use the following steps: 
+### Cloning the Repository
+To take your own version of this repository, you will have to use the following steps:
 
-1. Select the fork button in the top right corner of the repository and add to your own 
-2. Clone the repository using the green 'Code' button 
+1. Select the fork button in the top right corner of the repository and add to your own
+2. Clone the repository using the green 'Code' button
 3. Copy the repository URL to your clipboard
-4. Open your terminal and run: git clone [REPOSITORY URL] 
-5. Change into the project directory 
+4. Open your terminal and run: git clone [REPOSITORY URL]
+5. Change into the project directory
 
-This should mean you have a local copy of the repository to edit. 
+This should mean you have a local copy of the repository to edit.
 
 ### Setting up a Bucket in AWS S3
 
 [ to add once completed ]
 
 ### Deploying to Heroku
-The live version of this site is hosted using Heroku. To deploy your own version of the application, you need to use the following steps: 
+The live version of this site is hosted using Heroku. To deploy your own version of the application, you need to use the following steps:
 
 1. Set up a Heroku account and log in
 2. Select 'New' in the top right and create new app
-3. Name your app and choose the correct region before selecting create app 
+3. Name your app and choose the correct region before selecting create app
 4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL and any other unique variables you have includued in your project
-5. In the deploy tab, choose GitHub as your deployment method 
+5. In the deploy tab, choose GitHub as your deployment method
 6. Choose the correct repository and ensure the correct branch is selected (usually main)
 7. Use the 'deploy branch' button in the manual deployments section and let this run
 8. Use the open app button to launch the application
 
-Please note, within your allowed hosts within settings.py of your application, you should have '.herokuapp.com' or else this will not deploy. 
+Please note, within your allowed hosts within settings.py of your application, you should have '.herokuapp.com' or else this will not deploy.
 
-## Code from External Sources 
-The following packages have been used in this project, and are also listed in requirements.txt: 
+## Code from External Sources
+The following packages have been used in this project, and are also listed in requirements.txt:
 
-[ any additional code from external sources ]
+1. I used the increase and decrease buttons on the product detail page as a starter and amended them to suit my styling and needs.
 
 ## Credits and Disclaimers
-I have the following credits and disclaimers: 
+I have the following credits and disclaimers:
