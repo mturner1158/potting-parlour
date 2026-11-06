@@ -1,0 +1,65 @@
+<!-- used the concept from boutique ado but removed jquery element due to this not being included in bootstrap 5-->
+<script type="text/javascript">
+    (function () {
+        "use strict";
+
+        function getLimits(input) {
+            const min = parseInt(input.min, 10) || 1;
+            const max = parseInt(input.max, 10) || 99;
+            return { min, max };
+        }
+
+        function currentValue(input) {
+            const value = parseInt(input.value, 10);
+            return Number.isNaN(value) ? getLimits(input).min : value;
+        }
+
+        // Disable +/- buttons when the value hits the limits
+        function updateButtons(input) {
+            const group = input.closest(".input-group");
+            if (!group) return;
+            const { min, max } = getLimits(input);
+            const value = currentValue(input);
+
+            const minus = group.querySelector(".decrement-qty");
+            const plus = group.querySelector(".increment-qty");
+            if (minus) minus.disabled = value <= min;
+            if (plus) plus.disabled = value >= max;
+        }
+
+        function changeBy(button, step) {
+            const group = button.closest(".input-group");
+            const input = group && group.querySelector(".qty_input");
+            if (!input) return;
+
+            const { min, max } = getLimits(input);
+            input.value = Math.min(max, Math.max(min, currentValue(input) + step));
+            updateButtons(input);
+        }
+
+        document.addEventListener("click", function (event) {
+            const plus = event.target.closest(".increment-qty");
+            const minus = event.target.closest(".decrement-qty");
+            if (plus) {
+                event.preventDefault();
+                changeBy(plus, 1);
+            } else if (minus) {
+                event.preventDefault();
+                changeBy(minus, -1);
+            }
+        });
+
+        // Keep buttons in step when the user types in the box
+        document.addEventListener("change", function (event) {
+            if (event.target.matches(".qty_input")) {
+                const input = event.target;
+                const { min, max } = getLimits(input);
+                input.value = Math.min(max, Math.max(min, currentValue(input)));
+                updateButtons(input);
+            }
+        });
+
+        // Set the correct state when the page loads
+        document.querySelectorAll(".qty_input").forEach(updateButtons);
+    })();
+</script>

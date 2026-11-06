@@ -94,3 +94,9 @@
   </div>
 </div>
 {% endblock %}
+
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'plants/includes/quantity_changes.html' %}
+{% endblock %}
