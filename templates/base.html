@@ -47,34 +47,48 @@
 
 <body class="d-flex flex-column min-vh-100">
     <header class="fixed-top p-0">
-    <nav class="navbar bg-1 fg-2">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <span class="logo-text">Potting Parlour</span>
-            </a>
+        <nav class="navbar bg-1 fg-2">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <span class="logo-text">Potting Parlour</span>
+                </a>
 
-            <ul class="list-inline list-unstyled text-center mb-0 ms-auto">
-                <li class="list-inline-item">
-                    <a class="nav-link" href="">
-                        <i class="fa-regular fa-clipboard"></i>
-                        <p class="my-0">Tracking</p>
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a class="nav-link" href="">
-                        <i class="fa-solid fa-basket-shopping"></i>
-                        <p class="my-0">£0.00</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</header>
+                <ul class="list-inline list-unstyled text-center mb-0 ms-auto">
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-regular fa-clipboard"></i>
+                            <p class="my-0">Tracking</p>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                            <p class="my-0">£0.00</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-<div class="header-spacer"></div>
+    <div class="header-spacer"></div>
 
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container">
+        {% for message in messages %}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toast_warning.html' %}
+        {% elif level == 25 %}
+        {% include 'includes/toast_success.html' %}
+        {% else %}
+        {% include 'includes/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
+        {% endfor %}
+    </div>
     {% endif %}
 
 
@@ -108,6 +122,11 @@
     </footer>
 
     {% block postloadjs %}
+    <script>
+        document.querySelectorAll('.toast').forEach(function (el) {
+            new bootstrap.Toast(el).show();
+        });
+    </script>
     {% endblock %}
 
 </body>
