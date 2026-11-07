@@ -191,6 +191,7 @@ The following bugs occured during the design of this site:
 
 1. Footer not sticking to bottom of page - height tag in css was causing it and has been removed
 2. Filters on plant page showing {{ label }} - html line breakage from using the VS code formatter causing errors
+3. Friendly names not coming through for caegories in filters -
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
