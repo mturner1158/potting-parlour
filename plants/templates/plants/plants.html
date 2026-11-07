@@ -39,7 +39,7 @@
                                 <select name="category" id="category" class="form-select">
                                     <option value="">Any</option>
                                     {% for category in categories %}
-                                    <option value="{{ category.slug }}" {% if category.slug in selected_categories %}selected{% endif %}>{{ category.name }}</option>
+                                    <option value="{{ category.slug }}" {% if category.slug in selected_categories %}selected{% endif %}>{{ category.friendly_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -76,14 +76,13 @@
 
                             <div class="col-12 col-md-2 d-flex align-items-end">
                                 <div class="form-check">
+                                    <label class="form-check-label" for="pet_safe">Pet safe only</label>
                                     <input class="form-check-input" type="checkbox" name="pet_safe" value="1"
                                         id="pet_safe" {% if pet_safe == "1" %}checked{% endif %}>
-                                    <label class="form-check-label" for="pet_safe">Pet safe only</label>
+
                                 </div>
                             </div>
                         </div>
-
-
 
                         <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
                             <button type="submit" class="detail-btn">Apply filters</button>
@@ -94,6 +93,7 @@
                     </div>
                 </form>
 
+                <!-- Shows number from available after filters -->
                 <p class="mb-3">
                     {{ plants|length }} plant{{ plants|length|pluralize }} found
                     {% if query %}for "{{ query }}"{% endif %}
