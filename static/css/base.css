@@ -168,6 +168,15 @@ body {
   background-color: var(--colour-secondary);
 }
 
+.page-header-text {
+    font-family: var(--secondary-font);
+    color: var(--colour-primary);
+}
+
+.categories {
+    color: var(--colour-primary);
+}
+
 .card {
     background-color: var(--colour-primary);
 }
