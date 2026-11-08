@@ -42,12 +42,11 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, default=Decimal("0.00")
     )
 
-    # Snapshot of the session basket and the payment reference (if using Stripe)
     original_basket = models.TextField(blank=True, default="")
     stripe_pid = models.CharField(max_length=254, blank=True, default="")
 
     class Meta:
-        ordering = ["-date"]
+        ordering = ["-order_date"]
 
     def _generate_order_number(self):
         """Random, unique order number."""
