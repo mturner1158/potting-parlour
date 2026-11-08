@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'core',
     'plants',
     'basket',
+    'profiles',
 ]
 
 MIDDLEWARE = [
