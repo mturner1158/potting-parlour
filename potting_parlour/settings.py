@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'basket',
     'profiles',
     'checkout',
+
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -77,10 +80,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 "django.template.context_processors.media",
                 "basket.contexts.basket_contents",
-            ],
+            ]
         },
     },
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 WSGI_APPLICATION = 'potting_parlour.wsgi.application'
 
