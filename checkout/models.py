@@ -80,3 +80,25 @@ class Order(models.Model):
 
     def __str__(self):
         return self.order_number
+
+
+class OrderLineItem(models.Model):
+    """
+    model for each item in an order
+    """
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="lineitems"
+    )
+    plant = models.ForeignKey(Plant, on_delete=models.PROTECT)
+    quantity = models.PositiveIntegerField(default=1)
+    lineitem_total = models.DecimalField(
+        max_digits=8, decimal_places=2, editable=False
+    )
+
+    def save(self, *args, **kwargs):
+        """Set the line total on save."""
+        self.lineitem_total = self.plant.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.plant.name} x {self.quantity} on order {self.order.order_number}"
