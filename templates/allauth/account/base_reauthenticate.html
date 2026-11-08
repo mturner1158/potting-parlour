@@ -4,7 +4,10 @@
 {% block head_title %}
     {% trans "Confirm Access" %}
 {% endblock head_title %}
+
 {% block content %}
+<div class="site-main">
+    <div class="main-box container-fluid">
     {% element h1 %}
         {% trans "Confirm Access" %}
     {% endelement %}
@@ -26,4 +29,6 @@
             {% endfor %}
         {% endelement %}
     {% endif %}
+    </div>
+</div>
 {% endblock content %}

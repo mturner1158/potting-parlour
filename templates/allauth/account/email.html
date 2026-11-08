@@ -1,9 +1,13 @@
 {% extends "account/base_manage_email.html" %}
 {% load static allauth i18n %}
+
 {% block head_title %}
     {% trans "Email Addresses" %}
 {% endblock head_title %}
+
 {% block content %}
+<div class="site-main">
+    <div class="main-box container-fluid">
     {% element h1 %}
         {% trans "Email Addresses" %}
     {% endelement %}
@@ -72,6 +76,8 @@
             {% endslot %}
         {% endelement %}
     {% endif %}
+    </div>
+</div>
 {% endblock content %}
 {% block extra_body %}
     <script src="{% static 'account/js/account.js' %}"></script>

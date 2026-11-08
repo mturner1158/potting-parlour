@@ -1,10 +1,14 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
+
 {% block head_title %}
     {% trans "Sign In" %}
 {% endblock head_title %}
+
 {% block content %}
+<div class="site-main">
+    <div class="main-box container-fluid">
     {% element h1 %}
         {% trans "Sign In" %}
     {% endelement %}
@@ -52,10 +56,13 @@
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
     {% endif %}
+    </div>
+</div>
 {% endblock content %}
 {% block extra_body %}
     {{ block.super }}
     {% if PASSKEY_LOGIN_ENABLED %}
         {% include "mfa/webauthn/snippets/login_script.html" with button_id="passkey_login" %}
     {% endif %}
+
 {% endblock %}
