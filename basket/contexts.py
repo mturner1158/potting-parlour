@@ -5,7 +5,7 @@ from plants.models import Plant
 
 
 def basket_contents(request):
-    """Makes the basket available in every template (header total, etc.)."""
+    """Basket total to be used throughout the project"""
     basket = request.session.get("basket", {})
     plants = Plant.objects.filter(pk__in=basket.keys(), is_active=True)
 
