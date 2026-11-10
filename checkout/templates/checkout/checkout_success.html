@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="site-main">
+    <div class="main-box container-fluid">
+    <h1 class="my-4">Thank you!</h1>
+    <p>Your order has been placed. A confirmation will be sent to <strong>{{ order.email }}</strong>.</p>
+    <p>Order number: <strong>{{ order.order_number }}</strong></p>
+
+    <div class="table-responsive basket-table-wrap my-4">
+        <table class="table basket-table align-middle mb-0">
+        <thead>
+            <tr>
+            <th scope="col">Plant</th>
+            <th scope="col" class="text-center">Qty</th>
+            <th scope="col" class="text-end">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.lineitems.all %}
+            <tr>
+            <td>{{ item.plant.name }}</td>
+            <td class="text-center">{{ item.quantity }}</td>
+            <td class="text-end">£{{ item.lineitem_total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><th colspan="2" class="text-end">Subtotal</th><td class="text-end">£{{ order.order_total }}</td></tr>
+            <tr><th colspan="2" class="text-end">Delivery</th><td class="text-end">£{{ order.delivery_cost }}</td></tr>
+            <tr><th colspan="2" class="text-end">Grand total</th><th class="text-end">£{{ order.grand_total }}</th></tr>
+        </tfoot>
+        </table>
+    </div>
+
+    <p>
+        Delivering to: {{ order.full_name }}, {{ order.street_address1 }}, {{ order.town_or_city }},
+        {{ order.postcode }}, {{ order.country }}
+    </p>
+    <a href="{% url 'all_plants' %}" class="detail-btn">Keep shopping</a>
+    </div>
+</div>
+{% endblock %}
