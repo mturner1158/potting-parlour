@@ -15,10 +15,10 @@
 
   const style = {
     base: {
-      color: "#2F4A3A;",
+      color: "#2F4A3A",
       fontFamily: "sans-serif",
       fontSize: "16px",
-      "::placeholder": { color: "#FBF8F4" },
+      "::placeholder": { color: "gray" },
     },
     invalid: { color: "#dc3545", iconColor: "#dc3545" },
   };
@@ -56,6 +56,15 @@
     }, remaining);
   }
 
+  const saveInfoBox = document.getElementById("id-save-info");
+
+  function cacheCheckoutData() {
+    const data = new FormData(form);   // all the form fields plus the CSRF token
+    data.set("client_secret", clientSecret);
+    data.set("save_info", saveInfoBox && saveInfoBox.checked ? "1" : "0");
+    return fetch(form.dataset.cacheUrl, { method: "POST", body: data });
+  }
+
   // Show an error and let the user try again
   function showPaymentError(message) {
     hideOverlay(function () {
@@ -74,32 +83,40 @@
     errorDiv.textContent = "";
     showOverlay();
 
-    stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: card,
-          billing_details: {
-            name: form.elements["full_name"].value.trim(),
-            email: form.elements["email"].value.trim(),
-            phone: form.elements["phone_number"].value.trim(),
-          },
-        },
-      })
-      .then(function (result) {
-        if (result.error) {
-          showPaymentError(result.error.message);
-        } else if (result.paymentIntent.status === "succeeded") {
-          form.submit();
-        } else {
+    cacheCheckoutData()
+      .then(function (response) {
+        if (!response.ok) {
           showPaymentError(
-            "Your payment hasn't completed yet. Please check before trying again."
+            "Sorry, we couldn't begin your payment. Your card has not been charged. Please try again."
           );
+          return;
         }
+
+        return stripe
+          .confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: card,
+              billing_details: {
+                name: form.elements["full_name"].value.trim(),
+                email: form.elements["email"].value.trim(),
+                phone: form.elements["phone_number"].value.trim(),
+              },
+            },
+          })
+          .then(function (result) {
+            if (result.error) {
+              showPaymentError(result.error.message);
+            } else if (result.paymentIntent.status === "succeeded") {
+              form.submit();
+            } else {
+              showPaymentError(
+                "Your payment hasn't completed yet. Please check before trying again."
+              );
+            }
+          });
       })
       .catch(function () {
-        showPaymentError(
-          "Something went wrong. Please check before trying again."
-        );
+        showPaymentError("Something went wrong. Please check before trying again.");
       });
   });
 })();

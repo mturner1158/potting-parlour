@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 
 from basket.contexts import basket_contents
 from profiles.models import Profile
@@ -12,6 +14,29 @@ import json
 import stripe
 
 from .forms import OrderForm
+
+
+@require_POST
+def cache_checkout_data(request):
+    """Attach the basket and delivery details to the payment before it is confirmed."""
+    try:
+        pid = request.POST.get("client_secret", "").split("_secret")[0]
+
+        metadata = {
+            "project": "potting_parlour",
+            "basket": json.dumps(request.session.get("basket", {})),
+            "save_info": request.POST.get("save_info", "0"),
+            "username": request.user.username if request.user.is_authenticated else "",
+        }
+        for field in OrderForm.Meta.fields:
+            metadata[field] = request.POST.get(field, "")
+
+        client = stripe.StripeClient(settings.STRIPE_SECRET_KEY)
+        client.v1.payment_intents.update(pid, params={"metadata": metadata})
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(content=str(e), status=400)
+
 
 def checkout(request):
     current_basket = basket_contents(request)
