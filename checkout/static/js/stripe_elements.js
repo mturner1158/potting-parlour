@@ -15,10 +15,10 @@
 
   const style = {
     base: {
-      color: "#000",
+      color: "#2F4A3A;",
       fontFamily: "sans-serif",
       fontSize: "16px",
-      "::placeholder": { color: "#aab7c4" },
+      "::placeholder": { color: "#FBF8F4" },
     },
     invalid: { color: "#dc3545", iconColor: "#dc3545" },
   };
@@ -33,14 +33,46 @@
     errorDiv.textContent = event.error ? event.error.message : "";
   });
 
-  // After selecting place order:
   const form = document.getElementById("payment-form");
   const submitButton = document.getElementById("submit-button");
+  const loadingOverlay = document.getElementById("loading-overlay");
 
+  // Overlay logic
+  const MIN_OVERLAY_MS = 1500;
+  let overlayShownAt = 0;
+
+  function showOverlay() {
+    overlayShownAt = Date.now();
+    loadingOverlay.classList.add("is-visible");
+  }
+
+  function hideOverlay(afterHidden) {
+    const elapsed = Date.now() - overlayShownAt;
+    const remaining = Math.max(0, MIN_OVERLAY_MS - elapsed);
+
+    setTimeout(function () {
+      loadingOverlay.classList.remove("is-visible");
+      if (afterHidden) afterHidden();
+    }, remaining);
+  }
+
+  // Show an error and let the user try again
+  function showPaymentError(message) {
+    hideOverlay(function () {
+      errorDiv.textContent = message;
+      errorDiv.scrollIntoView({ behavior: "smooth", block: "center" });
+      card.update({ disabled: false });
+      submitButton.disabled = false;
+    });
+  }
+
+  // After selecting place order:
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     card.update({ disabled: true });
     submitButton.disabled = true;
+    errorDiv.textContent = "";
+    showOverlay();
 
     stripe
       .confirmCardPayment(clientSecret, {
@@ -55,14 +87,19 @@
       })
       .then(function (result) {
         if (result.error) {
-          // Payment failed:
-          errorDiv.textContent = result.error.message;
-          card.update({ disabled: false });
-          submitButton.disabled = false;
+          showPaymentError(result.error.message);
         } else if (result.paymentIntent.status === "succeeded") {
-          // Payment worked:
           form.submit();
+        } else {
+          showPaymentError(
+            "Your payment hasn't completed yet. Please check before trying again."
+          );
         }
+      })
+      .catch(function () {
+        showPaymentError(
+          "Something went wrong. Please check before trying again."
+        );
       });
   });
 })();
