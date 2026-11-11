@@ -65,7 +65,23 @@ def checkout(request):
                 "There was an error with your form. Please double check your information.",
             )
     else:
-        order_form = OrderForm()
+        initial = {}
+        if request.user.is_authenticated:
+            profile, _ = Profile.objects.get_or_create(user=request.user)
+            initial = {
+                "full_name": request.user.get_full_name(),
+                "email": request.user.email,
+                "phone_number": profile.default_phone,
+                "street_address1": profile.default_street_address1,
+                "street_address2": profile.default_street_address2,
+                "town_or_city": profile.default_town_or_city,
+                "postcode": profile.default_postcode,
+                "country": profile.default_country,
+            }
+            # Skip empty values so they don't override the form's own defaults
+            initial = {key: value for key, value in initial.items() if value}
+
+        order_form = OrderForm(initial=initial)
 
     # create the intent
     intent = client.v1.payment_intents.create(
