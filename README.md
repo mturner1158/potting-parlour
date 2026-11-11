@@ -195,6 +195,7 @@ The following bugs occured during the design of this site:
 4. unable to log into django admin once profile model was created - had to create new sueruser and manually update the fields
 5. Order models not showing up in admin - had to add them to checkout admin app
 6. Checkout css not loading properly - wrong file path meant this was not linked
+7. Crispy form not loading for profile.html - forgot to add the django tag at the top of the page
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
