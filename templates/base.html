@@ -54,6 +54,29 @@
                 </a>
 
                 <ul class="list-inline list-unstyled text-center mb-0 ms-auto">
+                    {% if request.user.is_superuser %}
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <p class="my-0">Amend products</p>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-person"></i>
+                            <p class="my-0">Profile</p>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="list-inline-item">
+                        <a class="nav-link" href="">
+                            <i class="fa-solid fa-person"></i>
+                            <p class="my-0">Login</p>
+                        </a>
+                    </li>
+                    {% endif %}
                     <li class="list-inline-item">
                         <a class="nav-link" href="">
                             <i class="fa-regular fa-clipboard"></i>
