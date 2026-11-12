@@ -196,6 +196,8 @@ The following bugs occured during the design of this site:
 5. Order models not showing up in admin - had to add them to checkout admin app
 6. Checkout css not loading properly - wrong file path meant this was not linked
 7. Crispy form not loading for profile.html - forgot to add the django tag at the top of the page
+8. Add plant url not working - order of the plant urls was not aligned properly
+9. Delete plant button not showing up on plant_form.html - missed plant in the context
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
