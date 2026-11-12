@@ -32,3 +32,14 @@ def view_profile(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def order_history(request, order_number):
+    """Show the selected past order"""
+    order = get_object_or_404(
+        Order, order_number=order_number, user_profile__user=request.user
+    )
+
+    context = {"order": order, "from_profile": True}
+    return render(request, "checkout/checkout_success.html", context)

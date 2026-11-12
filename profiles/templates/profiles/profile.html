@@ -32,10 +32,42 @@
             <div class="col-12 col-lg-6">
                 <h2>Order History:</h2>
                 <p>View your previous orders below.</p>
+                {% if orders %}
+                <div class="table-responsive basket-table-wrap">
+                    <table class="table basket-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Items</th>
+                                <th scope="col" class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">{{ order.order_number|truncatechars:8 }}</a>
+                                </td>
+                                <td>{{ order.date|date:"j M Y" }}</td>
+                                <td>
+                                    {% for item in order.lineitems.all %}
+                                    <div class="small">{{ item.plant.name }} x {{ item.quantity }}</div>
+                                    {% endfor %}
+                                </td>
+                                <td class="text-end">£{{ order.grand_total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>You haven't placed any orders yet.</p>
+                <a href="{% url 'all_plants' %}" class="detail-btn">Browse plants</a>
+                {% endif %}
+
             </div>
         </div>
-
-
     </div>
 </div>
 
