@@ -1,7 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from django.db.models import Q
+from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q, ProtectedError
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from .models import Plant, Category
+from .forms import PlantForm
 
 
 SORT_OPTIONS = {
@@ -78,3 +82,77 @@ def plant_detail(request, slug):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def add_plant(request):
+    """Allows super users to add plants to site"""
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only the store owners can do that.")
+        return redirect("all_plants")
+
+    if request.method == "POST":
+        form = PlantForm(request.POST, request.FILES)
+        if form.is_valid():
+            plant = form.save()
+            messages.success(request, "Plant added!")
+            return redirect("plant_detail", slug=plant.slug)
+        messages.error(request, "Failed to add the plant. Please check the form is valid.")
+    else:
+        form = PlantForm()
+
+    template = "plants/plant_form.html"
+    context = {
+        "form": form,
+        }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_plant(request, plant_id):
+    """Edit an existing plant on the site if youre a superuser"""
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only the store owners can do that.")
+        return redirect("all_plants")
+
+    plant = get_object_or_404(Plant, pk=plant_id)
+
+    if request.method == "POST":
+        form = PlantForm(request.POST, request.FILES, instance=plant)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Plant updated!")
+            return redirect("plant_detail", slug=plant.slug)
+        messages.error(request, "Failed to update the plant. Please check the form is valid.")
+    else:
+        form = PlantForm(instance=plant)
+
+    template = "plants/plant_form.html"
+    context = {
+            "form": form,
+            "plant": plant,
+            }
+    return render(request, template, context)
+
+
+@login_required
+@require_POST
+def delete_plant(request, plant_id):
+    if not request.user.is_superuser:
+        messages.error(request, "Sorry, only the store owners can do that.")
+        return redirect("all_plants")
+
+    plant = get_object_or_404(Plant, pk=plant_id)
+    try:
+        plant.delete()
+    except ProtectedError:
+        messages.error(
+            request,
+            "This plant has been ordered, so it can't be deleted. "
+            "Untick 'Show in the shop' instead to hide it.",
+        )
+        return redirect("edit_plant", plant_id=plant.pk)
+
+    messages.success(request, "Plant deleted!")
+    return redirect("all_plants")

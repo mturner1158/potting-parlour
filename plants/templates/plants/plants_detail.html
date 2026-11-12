@@ -89,7 +89,18 @@
                   <span>Add to bag</span>
                 </button>
               </div>
+              {% if request.user.is_superuser %}
+                <div class="col-6">
+                  <a href="{% url 'edit_plant' plant.id %}" class="detail-btn mt-5 w-100">
+                  <span>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </span>
+                  <span>Edit Plant</span>
+                </a>
+                </div>
+              {% endif %}
             </div>
+
           </form>
         </div>
       </div>
