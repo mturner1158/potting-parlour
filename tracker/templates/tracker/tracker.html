@@ -2,18 +2,76 @@
 {% load static %}
 
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
-{% endblock %}
 
 {% block content %}
 <div class="site-main">
     <div class="main-box container-fluid">
-        <h1>Tracker</h1>
+        <h1 class="page-header-text mt-3">Track your Plants!</h1>
+
+        <!-- High Level Stats -->
+        <div class="d-flex justify-content-center gap-3 my-4">
+            <div class="tracker-stat">
+                <span class="tracker-stat-number">{{ total_plants }}</span>
+                <span>Total plants</span>
+            </div>
+            <div class="tracker-stat">
+                <span class="tracker-stat-number">{{ needs_water_count }}</span>
+                <span>Need water</span>
+            </div>
+        </div>
+
+        <!-- Plant stats -->
+        {% for user_plant in user_plants %}
+        <article class="tracker-row row align-items-center g-3 mb-4">
+
+            <div class="col-4 col-md-2">
+                {% if user_plant.plant.image %}
+                <img class="tracker-img" src="{{ user_plant.plant.image.url }}" alt="{{ user_plant.display_name }}">
+                {% elif user_plant.plant.image_url %}
+                <img class="tracker-img" src="{{ user_plant.plant.image_url }}" alt="{{ user_plant.display_name }}">
+                {% else %}
+                <img class="tracker-img" src="{% static 'images/noimage.jpg' %}" alt="No image available">
+                {% endif %}
+            </div>
+
+            <div class="col-8 col-md-10">
+                <div class="row align-items-center g-1">
+
+                    <div class="col-12 col-md-5">
+                        <h2 class="h5 mb-0">{{ user_plant.display_name }}</h2>
+                        <em class="small">{{ user_plant.plant.scientific_name }}</em>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <span class="small">
+                            Last watered:
+                            {% if user_plant.last_watered %}
+                            {{ user_plant.last_watered|date:"j M Y" }}
+                            {% else %}
+                            not yet
+                            {% endif %}
+                        </span>
+                        {% if user_plant.needs_water %}
+                        <span class="tracker-badge">Needs water</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12 col-md-3 text-md-end">
+                        <a href="" class="tracker-more">
+                            More <i class="fa-solid fa-angles-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </article>
+        {% empty %}
+        <div class="text-center my-5">
+            <p>You haven't got any plants to track yet.</p>
+            <a href="{% url 'all_plants' %}" class="detail-btn">Browse plants</a>
+        </div>
+        {% endfor %}
 
     </div>
 </div>

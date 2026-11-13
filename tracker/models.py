@@ -23,7 +23,7 @@ class UserPlant(models.Model):
     @property
     def purchased_at(self):
         """Date the plant was ordered on"""
-        return self.order.date
+        return self.bought_plant.order_date.date()
 
     @property
     def display_name(self):

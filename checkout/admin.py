@@ -20,6 +20,7 @@ class OrderAdmin(admin.ModelAdmin):
         "email", "phone_number", "street_address1", "street_address2",
         "town_or_city", "postcode", "country", "delivery_cost",
         "order_total", "grand_total", "original_basket", "stripe_pid",
+        "plants_added_to_tracker",
     )
     list_display = ("order_number", "order_date", "full_name", "order_total", "delivery_cost", "grand_total")
     ordering = ("-order_date",)
