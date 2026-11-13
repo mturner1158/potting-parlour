@@ -8,21 +8,43 @@
     <h1 class="my-4">Add or Edit a Plant</h1>
 
     <form method="POST" enctype="multipart/form-data" class="col-12 col-lg-8">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="d-flex gap-2 mt-3">
-        <a href="{% url 'all_plants' %}" class="detail-btn">Cancel</a>
-        <button type="submit" class="checkout-btn">Save plant</button>
-        </div>
-    </form>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-flex gap-2 mt-3">
+                <a href="{% url 'all_plants' %}" class="detail-btn">Cancel</a>
+                <button type="submit" class="checkout-btn">Save plant</button>
+            </div>
+        </form>
 
-    {% if plant %}
-    <form method="POST" action="{% url 'delete_plant' plant.id %}" class="mt-5"
-            onsubmit="return confirm('Delete this plant? This cannot be undone.');">
-        {% csrf_token %}
-        <button type="submit" class="detail-btn">Delete this plant</button>
-    </form>
-    {% endif %}
+        {% if plant %}
+
+        <button type="button" class="detail-btn mt-5" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            Delete this plant
+        </button>
+
+        <!-- modal template from bootstrap -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title h5" id="deleteModalLabel">Delete {{ plant.name }}?</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        This cannot be undone. If the plant has been ordered before, it can't be deleted,
+                        so you have to untick "Show in the shop" instead.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="detail-btn" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST" action="{% url 'delete_plant' plant.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="checkout-btn">Yes, delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
