@@ -5,6 +5,7 @@ from django.http import HttpResponse
 
 from plants.models import Plant
 from profiles.models import Profile
+from tracker.services import add_order_to_tracker
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -33,6 +34,7 @@ class StripeWH_Handler:
         # wait 5 seconds for order to be created
         for _ in range(5):
             if Order.objects.filter(stripe_pid=pid).exists():
+                add_order_to_tracker(order)
                 return HttpResponse(
                     content=f"Webhook received: {event.type} | SUCCESS: Order already in database",
                     status=200,
@@ -84,6 +86,8 @@ class StripeWH_Handler:
             return HttpResponse(
                 content=f"Webhook received: {event.type} | ERROR: {e}", status=500
             )
+
+        add_order_to_tracker(order)
 
         return HttpResponse(
             content=f"Webhook received: {event.type} | SUCCESS: Created order in webhook",

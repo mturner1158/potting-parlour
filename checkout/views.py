@@ -9,6 +9,7 @@ from profiles.models import Profile
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+from tracker.services import add_order_to_tracker
 
 import json
 import stripe
@@ -79,6 +80,8 @@ def checkout(request):
                     OrderLineItem.objects.create(
                         order=order, plant=item["plant"], quantity=item["quantity"]
                     )
+
+                add_order_to_tracker(order)
 
                 request.session["save_info"] = "save-info" in request.POST
                 return redirect("checkout_success", order_number=order.order_number)

@@ -45,6 +45,8 @@ class Order(models.Model):
     original_basket = models.TextField(blank=True, default="")
     stripe_pid = models.CharField(max_length=254, blank=True, default="")
 
+    plants_added_to_tracker = models.BooleanField(default=False)
+
     class Meta:
         ordering = ["-order_date"]
 
