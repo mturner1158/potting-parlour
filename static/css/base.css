@@ -367,6 +367,40 @@ button.detail-btn {
     font-style: italic;
 }
 
+/* checkout styles */
+
+.checkout-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--colour-secondary);
+    background-color: var(--colour-primary);
+    border: 2px solid var(--colour-primary);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background-color: var(--colour-secondary);
+    color: var(--colour-primary);
+}
+
+
+.loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(234,223,203,0.5);
+    color: var(--colour-primary);
+}
+
+.loading-overlay.is-visible {
+    display: flex;
+}
+
 /* tracking dashbaord styles */
 
 .tracker-stat {
