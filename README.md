@@ -231,7 +231,7 @@ The host your static files online, you need to undertake the following steps to 
 #### Part 1: Creating an account
 Firstly, you need to create an AWS account and set up a bucket:
 
-1. Head to the (AWS site)[https://aws.amazon.com/] and create an account
+1. Head to the [AWS site](https://aws.amazon.com/) and create an account
 2. Navigate to the S3 section of AWS
 3. Select create bucket
 4. Enter a bucket name, enable ACL's, select 'Bucket Owner preffered', deselect 'block all public access' and acknowledge this and then scoll down to cerate bucket
@@ -243,7 +243,7 @@ Firstly, you need to create an AWS account and set up a bucket:
 10. Select 'edit'
 11. Add the following code and save changes
 
-`[
+```[
     {
         "AllowedHeaders": [
             "Authorization"
@@ -256,12 +256,12 @@ Firstly, you need to create an AWS account and set up a bucket:
         ],
         "ExposeHeaders": []
     }
-]`
+]```
 
 12. Now we add a bucket policy. Select the permissions tab, scroll to bucket policy and select 'Edit'
 13. Add the following code, where [your chosen id] is an id you can create and [your arn] is the bucket arn that can be copied from above the editor
 
-`{
+```{
     "Version": "2012-10-17",
     "Id": "[your chosen id]",
     "Statement": [
@@ -272,7 +272,7 @@ Firstly, you need to create an AWS account and set up a bucket:
             "Resource": "[your arn]/*"
         }
     ]
-}`
+}```
 
 14. Save the policy
 15. On the permissions tab, scroll to Access control list and select 'Edit'
@@ -305,6 +305,7 @@ Now you have a bucket set up, you need to create a group, policy and user to acc
             "Resource": [
                 "[your arn]",
                 "[your arn]/*"
+            ]
         }
     ]
 }'
