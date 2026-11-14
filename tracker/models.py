@@ -41,7 +41,7 @@ class UserPlant(models.Model):
         return date.today() >= self.next_watering
 
     def mark_watered(self):
-        now = date.now()
+        now = date.today()
         self.last_watered = now
         self.save(update_fields=["last_watered"])
         WateringLog.objects.create(user_plant=self, watered_at=now)

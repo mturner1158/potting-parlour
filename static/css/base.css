@@ -393,6 +393,13 @@ button.detail-btn {
     border-radius: 10px;
 }
 
+.tracker-details.img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 .tracker-badge {
     display: inline-block;
     margin-left: 0.25rem;

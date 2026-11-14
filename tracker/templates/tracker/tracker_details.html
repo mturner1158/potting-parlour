@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="site-main">
+    <div class="main-box container-fluid">
+        <h1 class="page-header-text mt-3">Details for {{ user_plant.display_name }}</h1>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                {% if user_plant.plant.image %}
+                <img class="tracker-details-img" src="{{ user_plant.plant.image.url }}" alt="{{ user_plant.display_name }}">
+                {% elif user_plant.plant.image_url %}
+                <img class="tracker-details-img" src="{{ user_plant.plant.image_url }}" alt="{{ user_plant.display_name }}">
+                {% else %}
+                <img class="tracker-details-img" src="{% static 'images/noimage.jpg' %}" alt="No image available">
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-6">
+                <!-- nickname, details and notes  -->
+                <p class="mb-1"><em>{{ user_plant.plant.scientific_name }}</em></p>
+                <p class="small">{{ user_plant.plant.name }}</p>
+
+                <h2 class="h5 mt-4">Care</h2>
+                <dl class="row tracker-info">
+                    <dt class="col-6">Light</dt>
+                    <dd class="col-6">{{ user_plant.plant.get_light_display }}</dd>
+                    <dt class="col-6">Humidity</dt>
+                    <dd class="col-6">{{ user_plant.plant.get_humidity_display }}</dd>
+                    <dt class="col-6">Care difficulty</dt>
+                    <dd class="col-6">{{ user_plant.plant.get_difficulty_display }}</dd>
+                    <dt class="col-6">Pets</dt>
+                    <dd class="col-6">{{ user_plant.plant.pet_safe|yesno:"Pet safe,Not pet safe" }}</dd>
+                </dl>
+
+                <h2 class="h5 mt-4">Watering</h2>
+                <dl class="row tracker-info">
+                    <dt class="col-6">Water every</dt>
+                    <dd class="col-6">{{ user_plant.plant.watering_interval_days }} days</dd>
+                    <dt class="col-6">Bought</dt>
+                    <dd class="col-6">{{ user_plant.purchased_at|date:"j M Y" }}</dd>
+                    <dt class="col-6">Last watered</dt>
+                    <dd class="col-6">
+                        {% if user_plant.last_watered %}{{ user_plant.last_watered|date:"j M Y" }}{% else %}Not yet{% endif %}
+                    </dd>
+                    <dt class="col-6">Next watering</dt>
+                    <dd class="col-6">
+                        {{ user_plant.next_watering|date:"j M Y" }}
+                        {% if user_plant.needs_water %}<span class="tracker-badge">Needs water</span>{% endif %}
+                    </dd>
+                </dl>
+
+                <form method="POST" action="{% url 'water_plant' user_plant.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="water-btn">Water now</button>
+                </form>
+                </div>
+            <div class="col-12 col-md-6">
+                <h2 class="h5 mt-5">Your details</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="detail-btn mt-2">Save details</button>
+                </form>
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!-- watering history -->
+                <h2 class="h5 mt-5">Watering history</h2>
+                {% if watering_history %}
+                <div class="table-responsive basket-table-wrap">
+                    <table class="table basket-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Watered on</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for log in watering_history %}
+                            <tr>
+                                <td>{{ log.watered_at|date:"l j F Y" }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No waterings recorded yet.</p>
+                {% endif %}
+
+                <a href="{% url 'view_tracker' %}" class="detail-btn mt-4 mb-4">
+                    <i class="fa-solid fa-angles-left"></i> Back to my plants
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
