@@ -53,6 +53,16 @@ body {
     font-family: var(--secondary-font);
 }
 
+.nav-compact .nav-link {
+    padding: 0.1rem 0.2rem;
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.nav-compact .nav-link i {
+    font-size: 0.5rem;
+}
+
 
 /* toast syles */
 
@@ -471,4 +481,15 @@ button.detail-btn {
 
 @media (min-width: 768px) {
   .site-main { padding: 2rem 8%; }
+
+  .nav-compact .nav-link {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+    .nav-compact .nav-link i {
+        font-size: 1rem;
+    }
+
 }
