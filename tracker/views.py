@@ -60,7 +60,19 @@ def tracker_details(request, plant_id):
 @require_POST
 def water_plant(request, plant_id):
     user_plant = get_object_or_404(UserPlant, pk=plant_id, owner=request.user)
+    name = user_plant.display_name
     user_plant.mark_watered()
-    messages.success(request, f"{user_plant.display_name} watered!")
+    messages.success(request, f"{name} watered!")
 
     return redirect("tracker_details", plant_id=user_plant.id)
+
+
+@login_required
+@require_POST
+def remove_plant(request, plant_id):
+    """Remove a plant from a users tracker"""
+    user_plant = get_object_or_404(UserPlant, pk=plant_id, owner=request.user)
+    name = user_plant.display_name
+    user_plant.delete()
+    messages.success(request, f"{name} has been removed from your tracker.")
+    return redirect("view_tracker")

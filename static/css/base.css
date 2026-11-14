@@ -53,6 +53,7 @@ body {
     font-family: var(--secondary-font);
 }
 
+
 /* toast syles */
 
 .success-header {
@@ -427,7 +428,7 @@ button.detail-btn {
     border-radius: 10px;
 }
 
-.tracker-details.img {
+.tracker-details-img {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
