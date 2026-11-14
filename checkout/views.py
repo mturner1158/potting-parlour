@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.views.decorators.http import require_POST
 
 from basket.contexts import basket_contents
@@ -133,6 +133,16 @@ def checkout(request):
 
 def checkout_success(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
+
+    owns_it = (
+        request.user.is_authenticated
+        and order.user_profile is not None
+        and order.user_profile.user == request.user
+    )
+    just_placed = request.session.get("last_order_number") == order_number
+
+    if not (owns_it or just_placed):
+        raise Http404
 
     if request.user.is_authenticated and request.session.get("save_info"):
         profile, _ = Profile.objects.get_or_create(user=request.user)
