@@ -214,9 +214,137 @@ To take your own version of this repository, you will have to use the following 
 
 This should mean you have a local copy of the repository to edit.
 
-### Setting up a Bucket in AWS S3
+### Setting up Environment Variables
+To host this project locally, you need to set up an env.py file to store your vairables. In this project, you will need to define the following variables:
 
-[ to add once completed ]
+* Secret key - a unique key for your project
+* Database key - a unique URL for your database
+* Stripe Public Key - the public key for your stripe account
+* Stripe Private Key - the private key for your stripe account
+* Stripe WH Key - the webhook handley key for your stripe account
+
+You will also need keys from your AWS bucket but these can be stored directly in Heroku. Please note, you <strong>must</strong> ensure this file is in your .gitignore` so people will not find your project secrets and exploit them.
+
+### Setting up a Bucket in AWS S3
+The host your static files online, you need to undertake the following steps to set up an AWS S3 bucket.
+
+#### Part 1: Creating an account
+Firstly, you need to create an AWS account and set up a bucket:
+
+1. Head to the (AWS site)[https://aws.amazon.com/] and create an account
+2. Navigate to the S3 section of AWS
+3. Select create bucket
+4. Enter a bucket name, enable ACL's, select 'Bucket Owner preffered', deselect 'block all public access' and acknowledge this and then scoll down to cerate bucket
+5. Once created, select the bucket name to view the bucket details
+6. Select properties
+7. Scoll down to 'static website hosting' and select 'Edit'
+8. Click enable, then enter 'index.html in the index document input and 'error.html' in the error document input before saving changes
+9. Next we have to change the CORS configuration. Head to permissions and scroll down to the Cross-origin resource sharing (CORS) section
+10. Select 'edit'
+11. Add the following code and save changes
+
+`[
+    {
+        "AllowedHeaders": [
+            "Authorization"
+        ],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "*"
+        ],
+        "ExposeHeaders": []
+    }
+]`
+
+12. Now we add a bucket policy. Select the permissions tab, scroll to bucket policy and select 'Edit'
+13. Add the following code, where [your chosen id] is an id you can create and [your arn] is the bucket arn that can be copied from above the editor
+
+`{
+    "Version": "2012-10-17",
+    "Id": "[your chosen id]",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "[your arn]/*"
+        }
+    ]
+}`
+
+14. Save the policy
+15. On the permissions tab, scroll to Access control list and select 'Edit'
+16. On the 'Edit Access control list' page, click 'list' in everyone and confirm you understand the changes before selecting save changes
+
+#### Part 2: Creating Groups, Policies and Users
+Now you have a bucket set up, you need to create a group, policy and user to access the files. We do this in the following steps:
+
+1. Search IAM in the search bar and select IAM
+2. Select 'User Groups' on the left-hand menu. Please note you may need to elevate your account for this.
+3. Select create group
+4. Enter a group name and select create user group
+5. Select polcies in the left-hand menu
+6. Select create polcy
+7. Select the JSON tab
+8. Select the Actions drop down
+9. Select 'Import Policy'
+10. Search for S3 and select 'AmazonS3FullAccess' before selecting 'Import Policy'
+11. Copy your bucket ARN, and in the policy editor include the following code, replaying [your arn] with your copied bucket ARN
+
+`{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Statement1",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "[your arn]",
+                "[your arn]/*"
+        }
+    ]
+}'
+
+12. Scroll down nad select next
+13. Give your policy a name and description
+14. Select Create policy
+15. Select User Group from the left-hand menu
+16. Select your group
+17. Select the permissions tab, click add permissions and select 'attach policies'
+18. Search for your policy, select the neckbox next to it and click 'attach policies'
+19. Select users from the left-hand menu
+20. Select 'create user'
+21. Enter a user name and select next
+22. Select the group your previously created and select next
+23. Scroll down and select 'Create User'
+
+Now we have this setup, we need to generate our access keys. We do this by:
+
+1. Selecting our new user
+2. Selecting security credentials
+3. Scroll down to the Access Keys section and select 'Create Access Key'
+4. Select 'Application running outside of AWS' and select next
+5. Select 'Create Access Key'
+6. Scroll down and click 'Download .csv file'
+7. Once saved, click done
+
+Now  you have the .csv file, you can open this in a text editor to view your AWS access key ID and AWS secret Access key. You will need both of these for your Heroku deploymenet so ensure you save them.
+
+### Setting up Stripe
+Stripe is used for the payments on this site. You can set up your own stripe account and connect to the project using the following:
+
+1. Set up a [stripe account](https://stripe.com/gb) and log in
+2. From the dashboard you should be able to see your public and secret stripe keys. These need to be copied into your env.py file
+3. To get your webhook key, we have to use the terminal in our editor.
+4. Install the Stripe Node library using `pip install stripe`
+5. Once installed you need to login to your strip acconut using `stripe login`
+6. Once logged in, you need to run `stripe listen --forward-thin-to localhost:4242/webhook --thin-events "*"`
+7. This should output your webhook secret in the following format: `export STRIPE_WEBHOOK_SECRET=whsec_...`
+8. Once this is set up, you should be able to view your events in the stripe workbench which can be found at the bottom of the page or by searching in the search bar
 
 ### Deploying to Heroku
 The live version of this site is hosted using Heroku. To deploy your own version of the application, you need to use the following steps:
@@ -224,16 +352,16 @@ The live version of this site is hosted using Heroku. To deploy your own version
 1. Set up a Heroku account and log in
 2. Select 'New' in the top right and create new app
 3. Name your app and choose the correct region before selecting create app
-4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL and any other unique variables you have includued in your project
+4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL, STIPE KEYS, AWS KEYS and any other unique variables you have includued in your project
 5. In the deploy tab, choose GitHub as your deployment method
 6. Choose the correct repository and ensure the correct branch is selected (usually main)
-7. Use the 'deploy branch' button in the manual deployments section and let this run
+7. Use the 'deploy branch' button in the manual deployments section and let this run. You can also set this to automatic deployment so anytime you push to main in your repository it automatically deploys the most recent commit
 8. Use the open app button to launch the application
 
 Please note, within your allowed hosts within settings.py of your application, you should have '.herokuapp.com' or else this will not deploy.
 
 ## Code from External Sources
-The following packages have been used in this project, and are also listed in requirements.txt:
+The following packages used in this project can be found in [requirements.txt](./requirements.txt) and the following code snippets have been used:
 
 1. I used the increase and decrease buttons on the product detail page of bouqiue ado as a starter and amended them to suit my styling and needs.
 2. Toast html files were from Bootstrap with custom classes and text
