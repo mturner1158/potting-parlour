@@ -25,13 +25,13 @@
                         <a href="{% url 'all_plants' %}">All Products</a>
                     </div>
                     <div class="col-3 home-btn">
-                        <a href="">Shady</a>
+                        <a href="{% url 'all_plants' %}?light=low">Shady</a>
                     </div>
                     <div class="col-3 home-btn">
-                        <a href="">Pet Friendly</a>
+                        <a href="{% url 'all_plants' %}?pet_safe=1">Pet Friendly</a>
                     </div>
                     <div class="col-3 home-btn">
-                        <a href="">Low Effort</a>
+                        <a href="{% url 'all_plants' %}?difficulty=easy">Low Effort</a>
                     </div>
                 </div>
                 <div class="row text-center login-btn">

@@ -168,7 +168,7 @@ body {
 }
 
 
-/* details  and product list styles*/
+/* details and product list styles*/
 
 .main-box {
   width: 100%;
@@ -336,6 +336,23 @@ button.detail-btn {
     font: inherit;
 }
 
+.delete-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--colour-primary);
+    background-color: var(--colour-sale);
+    border: 2px solid var(--colour-sale);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background-color: var(--colour-secondary);
+    color: var(--colour-primary);
+}
+
 
 /* basket styles */
 
@@ -384,6 +401,7 @@ button.detail-btn {
     padding: 0.75rem 1.5rem;
     font-size: 1.1rem;
     font-weight: 700;
+    text-decoration: none;
     color: var(--colour-secondary);
     background-color: var(--colour-primary);
     border: 2px solid var(--colour-primary);

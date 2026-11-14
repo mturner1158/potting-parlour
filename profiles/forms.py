@@ -25,7 +25,7 @@ class UserProfileForm(forms.ModelForm):
         self.fields['default_phone'].widget.attrs['autofocus'] = True
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = (
-                'border-black rounded-0  \
+                'border-black rounded-1  \
                     profile-form-input'
             )
             self.fields[field].label = False

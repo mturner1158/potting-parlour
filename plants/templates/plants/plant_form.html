@@ -7,20 +7,21 @@
     <div class="container main-box">
     <h1 class="my-4">Add or Edit a Plant</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="col-12 col-lg-8">
+        <form method="POST" enctype="multipart/form-data" class="col-12 col-lg-8">
             {% csrf_token %}
             {{ form|crispy }}
             <div class="d-flex gap-2 mt-3">
-                <a href="{% url 'all_plants' %}" class="detail-btn">Cancel</a>
+                <a href="{% url 'all_plants' %}" class="checkout-btn">Cancel</a>
                 <button type="submit" class="checkout-btn">Save plant</button>
+                <button type="button" class="delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                    Delete this plant
+                </button>
             </div>
         </form>
 
         {% if plant %}
 
-        <button type="button" class="detail-btn mt-5" data-bs-toggle="modal" data-bs-target="#deleteModal">
-            Delete this plant
-        </button>
+
 
         <!-- modal template from bootstrap -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

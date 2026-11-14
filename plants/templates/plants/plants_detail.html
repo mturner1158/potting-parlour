@@ -74,7 +74,7 @@
 
             <div class="row">
               <div class="col-6">
-                <a href="{% url 'all_plants' %}" class="detail-btn mt-5 w-100">
+                <a href="{% url 'all_plants' %}" class="detail-btn mt-2 w-100">
                   <span>
                     <i class="fa-solid fa-angles-right"></i>
                   </span>
@@ -82,7 +82,7 @@
                 </a>
               </div>
               <div class="col-6">
-                <button type="submit" class="detail-btn mt-5 w-100">
+                <button type="submit" class="detail-btn mt-2 w-100">
                   <span>
                     <i class="fa-solid fa-bag-shopping"></i>
                   </span>
@@ -91,11 +91,19 @@
               </div>
               {% if request.user.is_superuser %}
                 <div class="col-6">
-                  <a href="{% url 'edit_plant' plant.id %}" class="detail-btn mt-5 w-100">
+                  <a href="{% url 'edit_plant' plant.id %}" class="detail-btn mt-2 w-100">
                   <span>
                     <i class="fa-solid fa-pen-to-square"></i>
                   </span>
                   <span>Edit Plant</span>
+                </a>
+                </div>
+                <div class="col-6">
+                  <a href="{% url 'delete_plant' plant.id %}" class="detail-btn mt-2 w-100">
+                  <span>
+                    <i class="fa-solid fa-trash-can"></i>
+                  </span>
+                  <span>Delete Plant</span>
                 </a>
                 </div>
               {% endif %}
