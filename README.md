@@ -235,8 +235,9 @@ Please note, within your allowed hosts within settings.py of your application, y
 ## Code from External Sources
 The following packages have been used in this project, and are also listed in requirements.txt:
 
-1. I used the increase and decrease buttons on the product detail page as a starter and amended them to suit my styling and needs.
+1. I used the increase and decrease buttons on the product detail page of bouqiue ado as a starter and amended them to suit my styling and needs.
 2. Toast html files were from Bootstrap with custom classes and text
+3. Messaging levels were used from the boutique ado project
 
 ## Credits and Disclaimers
 I have the following credits and disclaimers:
