@@ -180,11 +180,93 @@ Relationships are shown by the lines joining the tables, with a 1 on each end me
 ## Features
 This section outlines key features on each page.
 
-[ add common and page specific features ]
+### Common Features
+These features appear across all pages.
+
+#### Navigation Bar
+The navigation bar is featured on all pages and aims to apply consistent styling and position for all users, built with responsive design. The navigation bar displays different options based on a users authentication.
+
+* For no authentication, users will see login, tracking and a basket
+* For a standard user, users will see profile, tracking and a basket
+* For a super user, users will see add products, profile, tracking and basket
+
+<img src="./media/features/nav-bar.png">
+
+#### Toasts
+For any messages on the site, a pop up will appear in the top right corner with the message. This is also coloured depending on whether it is a successful action, a warning, an error or just information. These all have the same layout as pictured below.
+
+<img src="./media/features/toasts.png">
+
+#### Footer
+The footer features links to key social media sites and is the same for all user types.
+
+<img src="./media/features/footer.png">
+
+### Page-Specific Details
+The following sections highlight the key features on each page and how this differs depending on authentication.
+
+#### Home
+The home page has the same layout for all users, with the login button changing to a logout button if authetnicated. This allows users to naviate to the plants available for sale or popular filtered selections such as shady, pet safe and low effort plants.
+
+<img src="./media/features/index.png">
+
+#### Plants
+The plants page is the same for all users. The top of the page is made of a title, searcg bar and filtering options. Below that are tiles for each plant showing key information and selecting the picture or the arrow icon will take you to further details.
+
+<img src="./media/features/plants.png">
+
+#### Plant Details
+The plants detail page shows all the information available for a plant. This has different buttons depending on the user:
+
+* For unauthenticated users and standard users, there are options to add to bage and return to the previous page
+* For super users, there are additional options to edit and delete the plant
+
+<img src="./media/features/details.png">
+
+#### Plant Edit
+The Plant Add / Edit page is only accessible to super users and allows users to add new plants, edit existing plants or delete records. A super user cannot delete a record if somene has already bought that plant. Instead a super user would mark this as inactive so it does not appear on the site anymore but the records are retained for order history.
+
+<img src="./media/features/add-plants.png">
+
+#### Basket
+The basket is the same for all users [check if you have to be logged in to see it] and shows what a user has added to their basket, including quantity of each plant, the price of an individual plant, the sub-total for that plant, the sub-total for all plants, the delivery fee (or lack of if meeting free delviery threshold) and the total price.
+
+<img src="./media/features/basket.png">
+
+#### Checkout
+The checkout can be accessed by [CHECK ACCESS] users to input their details and buy the items in their basket. This has an input form on the left and the order details on the right with a large checkout button at the bottom. There is also a loading overlay to ensure users are aware their payment is underway.
+
+<img src="./media/features/checkout.png">
+
+#### Checkout Success
+The checkout success is seen once a payment has been successful and shows the details of the order including the plants purchases and the delievry details.
+
+<img src="./media/features/checkout-success.png">
+
+#### Profile
+Authenticated users can update their details in the profile tab. These details are saved for faster checkout on another purchase and will automatically full out the checkout form on the users next purchase. The user also accesses their order history here and selecting an order number will take them to the checkout success page of that particular order.
+
+<img src="./media/features/profile.png">
+
+#### Tracker
+Authenticated users will see the tracking dashboard for plants they have purchased. Here they can see the total plants they've purchased, the number of plants that need to be watered and details on each plant for any nicknames they have been given, when they were last watered and the option for more details.
+
+<img src="./media/features/tracker.png">
+
+#### Tracker Details
+Authenticated users can see further details of the plant they have purchased. All details such as light, pet safety, humidity and care diffulty are recorded. There is a watering section tellling users the watering frequency, when they bought the plant, the last watered date and the next watering date, alongside buttons to update the watering date to today or remove the plant if they no longer want to track it.
+
+<img src="./media/features/tracker-details-1.png">
+
+Further down the page, there is a form to add a nickname and any particular notes about the plant and a table displaying the watering histroy.
+
+<img src="./media/features/tracker-details-2.png">
+
+#### Authentication
+Authentication pages (such as sign up, login, logout etc.) used allauth's base templates and features with modified styling to match my site design.
 
 ## Testing
-
-[ add separate file for testing ]
+ave tested my project through a combination of manual testing of user stories, Django testing and code-specific validators. Testing has been moved to a [testing file](./testing.md) and is ordered appropriately. Any bugs recorded throughout testing are captured in the bugs section.
 
 ## Bugs
 The following bugs occured during the design of this site:
