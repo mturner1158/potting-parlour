@@ -256,7 +256,8 @@ Firstly, you need to create an AWS account and set up a bucket:
         ],
         "ExposeHeaders": []
     }
-]```
+]
+```
 
 12. Now we add a bucket policy. Select the permissions tab, scroll to bucket policy and select 'Edit'
 13. Add the following code, where [your chosen id] is an id you can create and [your arn] is the bucket arn that can be copied from above the editor
@@ -272,7 +273,8 @@ Firstly, you need to create an AWS account and set up a bucket:
             "Resource": "[your arn]/*"
         }
     ]
-}```
+}
+```
 
 14. Save the policy
 15. On the permissions tab, scroll to Access control list and select 'Edit'
@@ -293,7 +295,7 @@ Now you have a bucket set up, you need to create a group, policy and user to acc
 10. Search for S3 and select 'AmazonS3FullAccess' before selecting 'Import Policy'
 11. Copy your bucket ARN, and in the policy editor include the following code, replaying [your arn] with your copied bucket ARN
 
-`{
+```{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -308,7 +310,8 @@ Now you have a bucket set up, you need to create a group, policy and user to acc
             ]
         }
     ]
-}'
+}
+```
 
 12. Scroll down nad select next
 13. Give your policy a name and description
