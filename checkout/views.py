@@ -62,6 +62,7 @@ def checkout(request):
             # checks if payment is already made for the order
             existing = Order.objects.filter(stripe_pid=pid).first()
             if existing:
+                request.session["last_order_number"] = order.order_number
                 return redirect("checkout_success", order_number=existing.order_number)
 
             # checks if payment went through
@@ -84,6 +85,7 @@ def checkout(request):
                 add_order_to_tracker(order)
 
                 request.session["save_info"] = "save-info" in request.POST
+                request.session["last_order_number"] = order.order_number
                 return redirect("checkout_success", order_number=order.order_number)
 
             messages.error(request, "We couldn't confirm your payment. Please try again.")
