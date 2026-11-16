@@ -69,6 +69,8 @@ A shop owner is someone who manages the stock available in the store.
 |4.3|As a shop owner, I want to remove entries so that I can manage my store.|Use the delete plant button to reopen the form, select delete and yes in the modal|The plant is removed from the shop|Pass|
 
 ## Responsiveness Testing
+Responsive design principles have been followed throughout this project and have been tested below.
+
 
 
 ## Lighthouse Testing
@@ -80,7 +82,7 @@ A shop owner is someone who manages the stock available in the store.
 ## CSS Testing
 
 
-## JavaScript Tetsting
+## JavaScript Testing
 
 
 ## Python Testing

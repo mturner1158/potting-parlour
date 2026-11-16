@@ -34,11 +34,14 @@ body {
     background-size: cover;
     font-family: var(--primary-font);
     color: var(--colour-primary);
+    outline: 6px solid red;
 }
 
 .site-main {
   flex: 1;
   display: flex;
+  max-width: 100%;
+  min-width: 0;
   justify-content: center;
   padding: 1.5rem 1rem;
 }
@@ -174,6 +177,7 @@ body {
 .main-box {
   width: 100%;
   max-width: 95%;
+  min-width: 0%;
   padding: 1.5rem;
   border: 1px solid var(--line);
   border-radius: 15px;
@@ -360,7 +364,9 @@ button.detail-btn {
 .basket-table-wrap {
     border: 1px solid transparent;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-x: auto;
+    width: 0;
+    min-width: 100%;
 }
 
 .basket-table {
