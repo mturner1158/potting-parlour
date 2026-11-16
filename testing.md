@@ -52,12 +52,21 @@ A plant owner is someone who has purchased a plant from the store through a logg
 
 |#|Story|Test Steps|Expected Results|Status|
 |-|-----|----------|----------------|------|
+|3.1|As a plant owner, I want a dashboard showing key details about my plants so that I can quickly understand their health.|Log in, purchase plants then select tracker in the nav bar |See the tracker page and the plants the user has purchased|Pass|
+|3.2|As a plant owner, I want to mark a plant as watered so that I know when I last watered it.|In a plants details, select the water now button|A log is added to the watering history table and shows in the main tracker table|Pass|
+|3.3|As a plant owner, I want to add a nickname to my plant so that I can tell my plants apart.|In a plants details, use the form to update the nickname|Using the form updates the display name in the tracker and tracker details|Pass|
+|3.4|As a plant owner, I want to see the plant history so that I understand what has happened to the plant.|Add watering dates and see these in watering histroy table|Each click of 'water now' adds a row to the table|Pass|
+|3.5|As a plant owner, I want to see the ideal conditions for my plant so that I can take care of it.|On a plants details, I can see all the details from the plant|Next to the image I can see the details of how to care and water a plant|Pass|
+|3.6|As a plant owner, I want to remove a plant so that it does not clutter my dashboard if I no longer have it.|In the plant details, select remove plant and select yes in the modal|The plant is removed from the tracker but retained in order histroy|Pass|
 
 ### User 4: Shop Owner
 A shop owner is someone who manages the stock available in the store.
 
 |#|Story|Test Steps|Expected Results|Status|
 |-|-----|----------|----------------|------|
+|4.1|As a shop owner, I want to add entries so that I can manage my store.|Use the add products form to add a plant to the shop|The new plant is available in the store|Pass|
+|4.2|As a shop owner, I want to edit entries so that I can manage my store.|Use the edit plant button to reopen the form and make a change then save|The changes appear on the plant details|Pass|
+|4.3|As a shop owner, I want to remove entries so that I can manage my store.|Use the delete plant button to reopen the form, select delete and yes in the modal|The plant is removed from the shop|Pass|
 
 ## Responsiveness Testing
 
