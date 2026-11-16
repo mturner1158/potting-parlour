@@ -158,7 +158,9 @@ For the add/edit plant form:
 
 
 ## CSS Testing
-Using the [CSS Validator](https://jigsaw.w3.org/css-validator/),
+Using the [CSS Validator](https://jigsaw.w3.org/css-validator/), I have no recorded errors and no warnings.
+
+<img src="./media/testing/css/css-testing.png">
 
 ## JavaScript Testing
 
