@@ -71,7 +71,45 @@ A shop owner is someone who manages the stock available in the store.
 ## Responsiveness Testing
 Responsive design principles have been followed throughout this project and have been tested below.
 
+For the home page:
 
+<img src="./media/testing/responsive/home.png">
+
+For the plants page:
+
+<img src="./media/testing/responsive/plants.png">
+
+For the plant details page:
+
+<img src="./media/testing/responsive/plant-details.png">
+
+For the basket page:
+
+<img src="./media/testing/responsive/basket.png">
+
+For the checkout page:
+
+<img src="./media/testing/responsive/checkout.png">
+
+For the checkout success page:
+
+<img src="./media/testing/responsive/checkout-success.png">
+
+For the profile page:
+
+<img src="./media/testing/responsive/profile.png">
+
+For the tracker page:
+
+<img src="./media/testing/responsive/tracker.png">
+
+For the tracker details page:
+
+<img src="./media/testing/responsive/tracker-details.png">
+
+For the add/edit plant form:
+
+<img src="./media/testing/responsive/add.png">
 
 ## Lighthouse Testing
 
