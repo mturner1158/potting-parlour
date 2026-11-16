@@ -178,7 +178,7 @@ body {
   max-width: 95%;
   min-width: 0%;
   padding: 1.5rem;
-  border: 1px solid var(--colour-error);
+  border: 1px solid var(--colour-secondary);
   border-radius: 15px;
   background-color: var(--colour-secondary);
 }

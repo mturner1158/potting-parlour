@@ -112,6 +112,8 @@ For the add/edit plant form:
 <img src="./media/testing/responsive/add.png">
 
 ## Lighthouse Testing
+I used the Lighthouse developer tool testing to ensure my website is loading efficiently, is accessible, follows best practice and is optimised for search engines. The outcomes are shown below.
+
 
 
 ## HTML Testing
