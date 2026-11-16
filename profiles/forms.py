@@ -22,10 +22,19 @@ class UserProfileForm(forms.ModelForm):
             'default_street_address2': 'Street Address 2',
         }
 
+        labels = {
+            'default_phone': 'Phone number',
+            'default_street_address1': 'Street address 1',
+            'default_street_address2': 'Street address 2',
+            'default_town_or_city': 'Town or city',
+            'default_postcode': 'Postcode',
+            'default_country': 'Country',
+        }
+
         self.fields['default_phone'].widget.attrs['autofocus'] = True
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = (
                 'border-black rounded-1  \
                     profile-form-input'
             )
-            self.fields[field].label = False
+            self.fields[field].label = labels[field]
