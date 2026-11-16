@@ -163,7 +163,15 @@ Using the [CSS Validator](https://jigsaw.w3.org/css-validator/), I have no recor
 <img src="./media/testing/css/css-testing.png">
 
 ## JavaScript Testing
+Using the [JavaScript Validator](https://jshint.com/), I have checked my stripe_elements.js file and the quantity_changes script.
 
+For stripe_elements.js:
+
+<img src="./media/testing/js/stripe-elements.png">
+
+For quantity_changes.js:
+
+<img src="./media/testing/js/quantity-changes.png">
 
 ## Python Testing
 
