@@ -114,13 +114,51 @@ For the add/edit plant form:
 ## Lighthouse Testing
 I used the Lighthouse developer tool testing to ensure my website is loading efficiently, is accessible, follows best practice and is optimised for search engines. The outcomes are shown below.
 
+For the home page:
 
+<img src="./media/testing/lighthouse/home.png">
+
+For the plants page:
+
+<img src="./media/testing/lighthouse/plants.png">
+
+For the plant details page:
+
+<img src="./media/testing/lighthouse/plant-details.png">
+
+For the basket page:
+
+<img src="./media/testing/lighthouse/basket.png">
+
+For the checkout page:
+
+<img src="./media/testing/lighthouse/checkout.png">
+
+For the checkout success page:
+
+<img src="./media/testing/lighthouse/checkout-success.png">
+
+For the profile page:
+
+<img src="./media/testing/lighthouse/profile.png">
+
+For the tracker page:
+
+<img src="./media/testing/lighthouse/tracker.png">
+
+For the tracker details page:
+
+<img src="./media/testing/lighthouse/tracker-details.png">
+
+For the add/edit plant form:
+
+<img src="./media/testing/lighthouse/add.png">
 
 ## HTML Testing
 
 
 ## CSS Testing
-
+Using the [CSS Validator](https://jigsaw.w3.org/css-validator/),
 
 ## JavaScript Testing
 
