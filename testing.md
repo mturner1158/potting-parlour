@@ -41,6 +41,11 @@ A shopper is someone who is logged into the store and looking to buy a plant.
 
 |#|Story|Test Steps|Expected Results|Status|
 |-|-----|----------|----------------|------|
+|2.1|As a shopper, I want my delivery details saved so that I can check out quicker in the future.|Complete a purchase with save details checked, then return to the checkout form to see previous details inputted|On return visit, previous details are in the right boxes|Pass|
+|2.2|As a shopper, I want to see my order history so that I can look at previous orders.|Log in as a standard user, navigate to profile and see my order history, including links to previous checkout success pages|I can view previous orders and the order number links to the checkout success page|Pass|
+|2.3|As a shopper, I want to edit my details so that I can keep my personal information up to date.|Log in, navigate to profile and update the form|Using the form I can update my details and then opening the checkout I can see the updated details|Pass|
+|*(negative test)*|As a shopper, I can't access another shoppers order history| Change the URL to another users order number and get redirected|Received a 404 page|Pass|
+|*(negative test)*|As a shopper, I can't access superuser features |Use the URL to the plant form|Received a 404 page|Pass|
 
 ### User 3: Plant Owner
 A plant owner is someone who has purchased a plant from the store through a logged-in account.
