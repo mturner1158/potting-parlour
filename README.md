@@ -283,6 +283,7 @@ The following bugs occured during the design of this site:
 8. Add plant url not working - order of the plant urls was not aligned properly
 9. Delete plant button not showing up on plant_form.html - missed plant in the context
 10. Plants not showing for users in the tracker - context was not rendering properly in the view leading to Django not picking up the data
+11. Completing an order auntenticated made the view 404 - last_order_numer variable was not being set in the checkout but being called in checkout success
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.

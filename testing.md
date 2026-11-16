@@ -30,11 +30,11 @@ A visitor is someone who is browsing the store but is not logged into an account
 |1.7|As a visitor, I want to see a running total of my basket so that I can track my current spend.|Add plants to basket and see the total increase in the top left|Total in top left increases everytime the user adds something to basket|Pass|
 |1.8|As a visitor, I want to sign up for an account so that I can have access to more features.|Selecting the login button will allow me to choose signup and make an account|Selecting log in details, navigating to sign up, entering details and verifying email creates an account|Pass|
 |1.9|As a visitor, I want to be redirected sensibly if I try to access a protected page so that I understand what further authentication is needed.|Input a URL that requires a login|Redirected to the login page when an unathenticated user tries to access certain areas|Pass|
-|1.10|As a visitor, I want to buy plants securely so that I know my payment is secure.||||
-|1.11|As a visitor, I want notifications for any actions I take so that I am aware of my actions on the site.||||
-|1.12|As a visitor, I want a clear success page after purchase so that I know my order went through.||||
-|1.13|As a visitor, I want a clear message if my payment has failed so that I know what to do next.||||
-|1.14|As a shopper, I want a loading screen during checkout so that I know something is happening.||||
+|1.10|As a visitor, I want to buy plants securely so that I know my payment is secure.|Fill out details in checkout success and select place order|After a loading screen go to the checkout success view|Pass|
+|1.11|As a visitor, I want notifications for any actions I take so that I am aware of my actions on the site.|When taking an action on the site see a pop up in the top right|Take actions such as adding to basket, updating quantity etc and see toast pop up|Pass|
+|1.12|As a visitor, I want a clear success page after purchase so that I know my order went through.|Place an order and move to a success page|After checking out move to the checkout success page showing the order number, order and delivery address|Pass|
+|1.13|As a visitor, I want a clear message if my payment has failed so that I know what to do next.|Input the various stripe test card numbers for failed payments|Using each failed test card number leaves the appropriate error in red below the payment details section|Pass|
+|1.14|As a shopper, I want a loading screen during checkout so that I know something is happening.|Place an order and see a loading screen occur|A loading screen appears whilst the payment is happening|Pass|
 
 ### User 2: Shopper
 A shopper is someone who is logged into the store and looking to buy a plant.
