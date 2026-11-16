@@ -34,7 +34,6 @@ body {
     background-size: cover;
     font-family: var(--primary-font);
     color: var(--colour-primary);
-    outline: 6px solid red;
 }
 
 .site-main {
@@ -179,7 +178,7 @@ body {
   max-width: 95%;
   min-width: 0%;
   padding: 1.5rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--colour-error);
   border-radius: 15px;
   background-color: var(--colour-secondary);
 }
@@ -362,11 +361,10 @@ button.detail-btn {
 /* basket styles */
 
 .basket-table-wrap {
+    position: relative;
     border: 1px solid transparent;
     border-radius: 10px;
     overflow-x: auto;
-    width: 0;
-    min-width: 100%;
 }
 
 .basket-table {
