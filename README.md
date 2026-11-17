@@ -79,7 +79,7 @@ The colour theme of this site is as follows:
 |Leaf green|`#3E8E5A`|Success messages|
 |Amber|`#D9962B`|Warning messages|
 |Brick red|`#C0443A`|Error messages|
-|Steel blue|`#4A7C9B`|Infomation|
+|Steel blue|`#4A7C9B`|Information|
 
 Using this [contrast evaluator](https://coolors.co/contrast-checker/3d3d3c-faf9f6), the background colour and text colour have a contrast score of 7.49 which is rated very good.
 
@@ -127,7 +127,7 @@ This page shows the general style of all authentication pages.
 <img src="./static/images/wireframe-login.png">
 
 #### Basket
-This page shows how the basket will look once users add plant to purchase.
+This page shows how the basket will look once users add plants to purchase.
 
 <img src="./static/images/wireframe-basket.png">
 
@@ -180,8 +180,29 @@ In this project, my application will utilise a PostgreSQL database provided by t
 Relationships are shown by the lines joining the tables, with a 1 on each end meaning a one-to-one connection and a 1 and a cross on the end meaning a one-to-many connection.
 
 ## Security
+This section outlines the measures taken to keep user data, payments and site content secure.
 
-[ add all security measures taken ]
+### Authentication and Authorisation
+* Django Allauth handles registration, login and logout. Passwords are hashed by Django and never stored in plain text.
+* Access control on protected pages: the tracker, profile and order history require login. Unauthenticated users are redirected to the login page with a message explaining why.
+* Superuser-only actions: adding, editing and deleting plants is restricted to superusers. Standard users and visitors who try to access these URLs are redirected and shown an error toast.
+* Ownership checks: users can only view and edit their own profile, orders and owned plants. Attempting to access another user's record returns a 404 / is denied.
+
+### Payments
+* Payments are processed by Stripe. Card details are entered into Stripe's secure form and are never stored on or passed through my server.
+* A Stripe webhook with a signing secret verifies that payment events genuinely come from Stripe, so orders are still created if a user closes the browser mid-checkout and cannot be forged.
+* Only the order number, delivery details and Stripe payment intent ID (PID) are stored in the database.
+
+### Secrets and Environment Variables
+* The secret key, database URL, Stripe keys and AWS keys are stored in `env.py` locally and in Heroku Config Vars in production.
+* `env.py` is listed in `.gitignore` so no credentials are committed to the repository.
+* `DEBUG` is set to `False` in production, and `ALLOWED_HOSTS` is limited to the deployed domain and `.herokuapp.com`.
+
+### Data Protection
+* CSRF protection: all forms use Django's `{% csrf_token %}` and the CSRF middleware is enabled.
+* SQL injection: all database access uses the Django ORM, which parameterises queries.
+* Safe deletion: plants that have been purchased cannot be deleted and are marked inactive instead. This protects order history and data integrity.
+* The PostgreSQL database and AWS S3 bucket are accessed by dedicated credentials. The S3 IAM user is limited to the project bucket only.
 
 ## Features
 This section outlines key features on each page.
@@ -212,45 +233,45 @@ The footer features links to key social media sites and is the same for all user
 The following sections highlight the key features on each page and how this differs depending on authentication.
 
 #### Home
-The home page has the same layout for all users, with the login button changing to a logout button if authetnicated. This allows users to naviate to the plants available for sale or popular filtered selections such as shady, pet safe and low effort plants.
+The home page has the same layout for all users, with the login button changing to a logout button if authenticated. This allows users to navigate to the plants available for sale or popular filtered selections such as shady, pet safe and low effort plants.
 
 <img src="./media/features/index.png">
 
 #### Plants
-The plants page is the same for all users. The top of the page is made of a title, searcg bar and filtering options. Below that are tiles for each plant showing key information and selecting the picture or the arrow icon will take you to further details.
+The plants page is the same for all users. The top of the page is made of a title, search bar and filtering options. Below that are tiles for each plant showing key information and selecting the picture or the arrow icon will take you to further details.
 
 <img src="./media/features/plants.png">
 
 #### Plant Details
 The plants detail page shows all the information available for a plant. This has different buttons depending on the user:
 
-* For unauthenticated users and standard users, there are options to add to bage and return to the previous page
+* For unauthenticated users and standard users, there are options to add to basket and return to the previous page
 * For super users, there are additional options to edit and delete the plant
 
 <img src="./media/features/details.png">
 
 #### Plant Edit
-The Plant Add / Edit page is only accessible to super users and allows users to add new plants, edit existing plants or delete records. A super user cannot delete a record if somene has already bought that plant. Instead a super user would mark this as inactive so it does not appear on the site anymore but the records are retained for order history.
+The Plant Add / Edit page is only accessible to super users and allows users to add new plants, edit existing plants or delete records. A super user cannot delete a record if someone has already bought that plant. Instead a super user would mark this as inactive so it does not appear on the site anymore but the records are retained for order history.
 
 <img src="./media/features/add-plants.png">
 
 #### Basket
-The basket is the same for all users [check if you have to be logged in to see it] and shows what a user has added to their basket, including quantity of each plant, the price of an individual plant, the sub-total for that plant, the sub-total for all plants, the delivery fee (or lack of if meeting free delviery threshold) and the total price.
+The basket is the same for all users and shows what a user has added to their basket, including quantity of each plant, the price of an individual plant, the sub-total for that plant, the sub-total for all plants, the delivery fee (or lack of if meeting free delivery threshold) and the total price.
 
 <img src="./media/features/basket.png">
 
 #### Checkout
-The checkout can be accessed by [CHECK ACCESS] users to input their details and buy the items in their basket. This has an input form on the left and the order details on the right with a large checkout button at the bottom. There is also a loading overlay to ensure users are aware their payment is underway.
+The checkout can be accessed by all users to input their details and buy the items in their basket. This has an input form on the left and the order details on the right with a large checkout button at the bottom. There is also a loading overlay to ensure users are aware their payment is underway.
 
 <img src="./media/features/checkout.png">
 
 #### Checkout Success
-The checkout success is seen once a payment has been successful and shows the details of the order including the plants purchases and the delievry details.
+The checkout success is seen once a payment has been successful and shows the details of the order including the plants purchases and the delivery details.
 
 <img src="./media/features/checkout-success.png">
 
 #### Profile
-Authenticated users can update their details in the profile tab. These details are saved for faster checkout on another purchase and will automatically full out the checkout form on the users next purchase. The user also accesses their order history here and selecting an order number will take them to the checkout success page of that particular order.
+Authenticated users can update their details in the profile tab. These details are saved for faster checkout on another purchase and will automatically fill out the checkout form on the users next purchase. The user also accesses their order history here and selecting an order number will take them to the checkout success page of that particular order.
 
 <img src="./media/features/profile.png">
 
@@ -260,11 +281,11 @@ Authenticated users will see the tracking dashboard for plants they have purchas
 <img src="./media/features/tracker.png">
 
 #### Tracker Details
-Authenticated users can see further details of the plant they have purchased. All details such as light, pet safety, humidity and care diffulty are recorded. There is a watering section tellling users the watering frequency, when they bought the plant, the last watered date and the next watering date, alongside buttons to update the watering date to today or remove the plant if they no longer want to track it.
+Authenticated users can see further details of the plant they have purchased. All details such as light, pet safety, humidity and care difficulty are recorded. There is a watering section telling users the watering frequency, when they bought the plant, the last watered date and the next watering date, alongside buttons to update the watering date to today or remove the plant if they no longer want to track it.
 
 <img src="./media/features/tracker-details-1.png">
 
-Further down the page, there is a form to add a nickname and any particular notes about the plant and a table displaying the watering histroy.
+Further down the page, there is a form to add a nickname and any particular notes about the plant and a table displaying the watering history.
 
 <img src="./media/features/tracker-details-2.png">
 
@@ -272,24 +293,26 @@ Further down the page, there is a form to add a nickname and any particular note
 Authentication pages (such as sign up, login, logout etc.) used allauth's base templates and features with modified styling to match my site design.
 
 ## Testing
-ave tested my project through a combination of manual testing of user stories, Django testing and code-specific validators. Testing has been moved to a [testing file](./testing.md) and is ordered appropriately. Any bugs recorded throughout testing are captured in the bugs section.
+I have tested my project through a combination of manual testing of user stories, Django testing and code-specific validators. Testing has been moved to a [testing file](./testing.md) and is ordered appropriately. Any bugs recorded throughout testing are captured in the bugs section.
 
 ## Bugs
-The following bugs occured during the design of this site:
+The following bugs occurred during the design of this site:
 
-1. Footer not sticking to bottom of page - height tag in css was causing it and has been removed
-2. Filters on plant page showing {{ label }} - html line breakage from using the VS code formatter causing errors
-3. Friendly names not coming through for caegories in filters - wrong name selected in django template
-4. unable to log into django admin once profile model was created - had to create new sueruser and manually update the fields
-5. Order models not showing up in admin - had to add them to checkout admin app
-6. Checkout css not loading properly - wrong file path meant this was not linked
-7. Crispy form not loading for profile.html - forgot to add the django tag at the top of the page
-8. Add plant url not working - order of the plant urls was not aligned properly
-9. Delete plant button not showing up on plant_form.html - missed plant in the context
-10. Plants not showing for users in the tracker - context was not rendering properly in the view leading to Django not picking up the data
-11. Completing an order auntenticated made the view 404 - last_order_numer variable was not being set in the checkout but being called in checkout success
-12. The basket page was not responsive - I had a positon:absolute tab in my css which was causing the rror and had to be replaced with position:relative
-13. Inactive plants were showing in the view - I had missed a filter when creating the plant object in my view
+|#|Bug|Fix|
+|:-|:----|:----|
+|1|Footer not sticking to bottom of page|Height tag in css was causing it and has been removed|
+|2|Filters on plant page showing {{ label }}|html line breakage from using the VS code formatter causing errors|
+|3|Friendly names not coming through for categories in filters|wrong name selected in django template|
+|4|Unable to log into django admin once profile model was created|had to create new superuser and manually update the fields|
+|5|Order models not showing up in admin|had to add them to checkout admin app|
+|6|Checkout css not loading properly|wrong file path meant this was not linked|
+|7|Crispy form not loading for profile.html|forgot to add the django tag at the top of the page|
+|8|Add plant url not working|order of the plant urls was not aligned properly|
+|9|Delete plant button not showing up on plant_form.html|missed plant in the context|
+|10|Plants not showing for users in the tracker|context was not rendering properly in the view leading to Django not picking up the data|
+|11|Completing an order as an auntenticated user made the view 404|last_order_number variable was not being set in the checkout but being called in checkout success|
+|12|The basket page was not responsive|I had a position:absolute tab in my css which was causing the error and had to be replaced with position:relative|
+|13|Inactive plants were showing in the view|I had missed a filter when creating the plant object in my view|
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.
@@ -306,15 +329,15 @@ To take your own version of this repository, you will have to use the following 
 This should mean you have a local copy of the repository to edit.
 
 ### Setting up Environment Variables
-To host this project locally, you need to set up an env.py file to store your vairables. In this project, you will need to define the following variables:
+To host this project locally, you need to set up an env.py file to store your variables. In this project, you will need to define the following variables:
 
 * Secret key - a unique key for your project
 * Database key - a unique URL for your database
 * Stripe Public Key - the public key for your stripe account
 * Stripe Private Key - the private key for your stripe account
-* Stripe WH Key - the webhook handley key for your stripe account
+* Stripe WH Key - the webhook handler key for your stripe account
 
-You will also need keys from your AWS bucket but these can be stored directly in Heroku. Please note, you <strong>must</strong> ensure this file is in your .gitignore` so people will not find your project secrets and exploit them.
+You will also need keys from your AWS bucket but these can be stored directly in Heroku. Please note, you <strong>must</strong> ensure this file is in your `.gitignore` so people will not find your project secrets and exploit them.
 
 ### Setting up a Bucket in AWS S3
 The host your static files online, you need to undertake the following steps to set up an AWS S3 bucket.
@@ -325,11 +348,11 @@ Firstly, you need to create an AWS account and set up a bucket:
 1. Head to the [AWS site](https://aws.amazon.com/) and create an account
 2. Navigate to the S3 section of AWS
 3. Select create bucket
-4. Enter a bucket name, enable ACL's, select 'Bucket Owner preffered', deselect 'block all public access' and acknowledge this and then scoll down to cerate bucket
+4. Enter a bucket name, enable ACLs, select 'Bucket Owner prefered', deselect 'block all public access' and acknowledge this and then scroll down to create bucket
 5. Once created, select the bucket name to view the bucket details
 6. Select properties
 7. Scoll down to 'static website hosting' and select 'Edit'
-8. Click enable, then enter 'index.html in the index document input and 'error.html' in the error document input before saving changes
+8. Click enable, then enter 'index.html' in the index document input and 'error.html' in the error document input before saving changes
 9. Next we have to change the CORS configuration. Head to permissions and scroll down to the Cross-origin resource sharing (CORS) section
 10. Select 'edit'
 11. Add the following code and save changes
@@ -378,13 +401,13 @@ Now you have a bucket set up, you need to create a group, policy and user to acc
 2. Select 'User Groups' on the left-hand menu. Please note you may need to elevate your account for this.
 3. Select create group
 4. Enter a group name and select create user group
-5. Select polcies in the left-hand menu
-6. Select create polcy
+5. Select policies in the left-hand menu
+6. Select create policy
 7. Select the JSON tab
 8. Select the Actions drop down
 9. Select 'Import Policy'
 10. Search for S3 and select 'AmazonS3FullAccess' before selecting 'Import Policy'
-11. Copy your bucket ARN, and in the policy editor include the following code, replaying [your arn] with your copied bucket ARN
+11. Copy your bucket ARN, and in the policy editor include the following code, replacing [your arn] with your copied bucket ARN
 
 ```{
     "Version": "2012-10-17",
@@ -404,13 +427,13 @@ Now you have a bucket set up, you need to create a group, policy and user to acc
 }
 ```
 
-12. Scroll down nad select next
+12. Scroll down and select next
 13. Give your policy a name and description
 14. Select Create policy
 15. Select User Group from the left-hand menu
 16. Select your group
 17. Select the permissions tab, click add permissions and select 'attach policies'
-18. Search for your policy, select the neckbox next to it and click 'attach policies'
+18. Search for your policy, select the checkbox next to it and click 'attach policies'
 19. Select users from the left-hand menu
 20. Select 'create user'
 21. Enter a user name and select next
@@ -427,7 +450,7 @@ Now we have this setup, we need to generate our access keys. We do this by:
 6. Scroll down and click 'Download .csv file'
 7. Once saved, click done
 
-Now  you have the .csv file, you can open this in a text editor to view your AWS access key ID and AWS secret Access key. You will need both of these for your Heroku deploymenet so ensure you save them.
+Now you have the .csv file, you can open this in a text editor to view your AWS access key ID and AWS secret Access key. You will need both of these for your Heroku deployment so ensure you save them.
 
 ### Setting up Stripe
 Stripe is used for the payments on this site. You can set up your own stripe account and connect to the project using the following:
@@ -436,7 +459,7 @@ Stripe is used for the payments on this site. You can set up your own stripe acc
 2. From the dashboard you should be able to see your public and secret stripe keys. These need to be copied into your env.py file
 3. To get your webhook key, we have to use the terminal in our editor.
 4. Install the Stripe Node library using `pip install stripe`
-5. Once installed you need to login to your strip acconut using `stripe login`
+5. Once installed you need to login to your strip account using `stripe login`
 6. Once logged in, you need to run `stripe listen --forward-thin-to localhost:4242/webhook --thin-events "*"`
 7. This should output your webhook secret in the following format: `export STRIPE_WEBHOOK_SECRET=whsec_...`
 8. Once this is set up, you should be able to view your events in the stripe workbench which can be found at the bottom of the page or by searching in the search bar
@@ -447,7 +470,7 @@ The live version of this site is hosted using Heroku. To deploy your own version
 1. Set up a Heroku account and log in
 2. Select 'New' in the top right and create new app
 3. Name your app and choose the correct region before selecting create app
-4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL, STIPE KEYS, AWS KEYS and any other unique variables you have includued in your project
+4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL, STRIPE KEYS, AWS KEYS and any other unique variables you have included in your project
 5. In the deploy tab, choose GitHub as your deployment method
 6. Choose the correct repository and ensure the correct branch is selected (usually main)
 7. Use the 'deploy branch' button in the manual deployments section and let this run. You can also set this to automatic deployment so anytime you push to main in your repository it automatically deploys the most recent commit
@@ -458,9 +481,12 @@ Please note, within your allowed hosts within settings.py of your application, y
 ## Code from External Sources
 The following packages used in this project can be found in [requirements.txt](./requirements.txt) and the following code snippets have been used:
 
-1. I used the increase and decrease buttons on the product detail page of bouqiue ado as a starter and amended them to suit my styling and needs.
+1. I used the increase and decrease buttons on the product detail page of Bouqiue Ado as a starter and amended them to suit my styling and needs.
 2. Toast html files were from Bootstrap with custom classes and text
 3. Messaging levels were used from the boutique ado project
 
 ## Credits and Disclaimers
 I have the following credits and disclaimers:
+
+* Friends for being testers for the application
+* All plant descriptions and details are AI generated to populate the site

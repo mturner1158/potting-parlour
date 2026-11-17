@@ -9,7 +9,7 @@ Please use the links below to navigate to a specific section:
 * [Lighthouse Testing](#lighthouse-testing)
 * [HTML Testing](#html-testing)
 * [CSS Testing](#css-testing)
-* [JavaScript Testing](#javascript-tetsting)
+* [JavaScript Testing](#javascript-testing)
 * [Python Testing](#python-testing)
 * [Django Testing](#django-testing)
 
@@ -27,14 +27,14 @@ A visitor is someone who is browsing the store but is not logged into an account
 |1.4|As a visitor, I want to be able to filter by price, watering frequency, light, humidity and pet safety, and sort the results, so that I can find specific plants.|Uses the drop downs and tick boxes to filter the page and select apply filter|Selecting filters and selecting apply shows the appropriate plants|Pass|
 |1.5|As a visitor, I want to be able to add products to a basket so that I can buy them.|Selecting a product and selecting add to basket|When selecting add to basket, the total goes up in the top right|Pass|
 |1.6|As a visitor, I want to change the quantity of items in my basket so that I can order multiple plants.|Select basket in the top right and change the quantity input then click update|Changing the quantity and selecting update will update the sub total and grand total|Pass|
-|1.7|As a visitor, I want to see a running total of my basket so that I can track my current spend.|Add plants to basket and see the total increase in the top left|Total in top left increases everytime the user adds something to basket|Pass|
+|1.7|As a visitor, I want to see a running total of my basket so that I can track my current spend.|Add plants to basket and see the total increase in the top left|Total in top left increases every time the user adds something to basket|Pass|
 |1.8|As a visitor, I want to sign up for an account so that I can have access to more features.|Selecting the login button will allow me to choose signup and make an account|Selecting log in details, navigating to sign up, entering details and verifying email creates an account|Pass|
-|1.9|As a visitor, I want to be redirected sensibly if I try to access a protected page so that I understand what further authentication is needed.|Input a URL that requires a login|Redirected to the login page when an unathenticated user tries to access certain areas|Pass|
+|1.9|As a visitor, I want to be redirected sensibly if I try to access a protected page so that I understand what further authentication is needed.|Input a URL that requires a login|Redirected to the login page when an unauthenticated user tries to access certain areas|Pass|
 |1.10|As a visitor, I want to buy plants securely so that I know my payment is secure.|Fill out details in checkout success and select place order|After a loading screen go to the checkout success view|Pass|
 |1.11|As a visitor, I want notifications for any actions I take so that I am aware of my actions on the site.|When taking an action on the site see a pop up in the top right|Take actions such as adding to basket, updating quantity etc and see toast pop up|Pass|
 |1.12|As a visitor, I want a clear success page after purchase so that I know my order went through.|Place an order and move to a success page|After checking out move to the checkout success page showing the order number, order and delivery address|Pass|
 |1.13|As a visitor, I want a clear message if my payment has failed so that I know what to do next.|Input the various stripe test card numbers for failed payments|Using each failed test card number leaves the appropriate error in red below the payment details section|Pass|
-|1.14|As a shopper, I want a loading screen during checkout so that I know something is happening.|Place an order and see a loading screen occur|A loading screen appears whilst the payment is happening|Pass|
+|1.14|As a visitor, I want a loading screen during checkout so that I know something is happening.|Place an order and see a loading screen occur|A loading screen appears whilst the payment is happening|Pass|
 
 ### User 2: Shopper
 A shopper is someone who is logged into the store and looking to buy a plant.
@@ -55,9 +55,9 @@ A plant owner is someone who has purchased a plant from the store through a logg
 |3.1|As a plant owner, I want a dashboard showing key details about my plants so that I can quickly understand their health.|Log in, purchase plants then select tracker in the nav bar |See the tracker page and the plants the user has purchased|Pass|
 |3.2|As a plant owner, I want to mark a plant as watered so that I know when I last watered it.|In a plants details, select the water now button|A log is added to the watering history table and shows in the main tracker table|Pass|
 |3.3|As a plant owner, I want to add a nickname to my plant so that I can tell my plants apart.|In a plants details, use the form to update the nickname|Using the form updates the display name in the tracker and tracker details|Pass|
-|3.4|As a plant owner, I want to see the plant history so that I understand what has happened to the plant.|Add watering dates and see these in watering histroy table|Each click of 'water now' adds a row to the table|Pass|
+|3.4|As a plant owner, I want to see the plant history so that I understand what has happened to the plant.|Add watering dates and see these in watering history table|Each click of 'water now' adds a row to the table|Pass|
 |3.5|As a plant owner, I want to see the ideal conditions for my plant so that I can take care of it.|On a plants details, I can see all the details from the plant|Next to the image I can see the details of how to care and water a plant|Pass|
-|3.6|As a plant owner, I want to remove a plant so that it does not clutter my dashboard if I no longer have it.|In the plant details, select remove plant and select yes in the modal|The plant is removed from the tracker but retained in order histroy|Pass|
+|3.6|As a plant owner, I want to remove a plant so that it does not clutter my dashboard if I no longer have it.|In the plant details, select remove plant and select yes in the modal|The plant is removed from the tracker but retained in order history|Pass|
 
 ### User 4: Shop Owner
 A shop owner is someone who manages the stock available in the store.
@@ -227,7 +227,7 @@ I conducted 4 tests for the basket app:
 
 1. A plant can be added to a basket
 2. A plant can be removed from a basket
-3. The basket total is calcualted correctly
+3. The basket total is calculated correctly
 4. You cannot add to a basket just by visiting the URL
 
 <img src="./media/testing/django/basket.png">
@@ -235,7 +235,7 @@ I conducted 4 tests for the basket app:
 ### Checkout Testing
 I conducted 4 tests on the checkout app:
 
-1. Sucessful orders show a success page for all users
+1. Successful orders show a success page for all users
 2. Unauthenticated users cannot see order history
 3. A user trying to view another users order will receive a 404 error
 4. An authenticated user can see their own orders
