@@ -155,6 +155,47 @@ For the add/edit plant form:
 <img src="./media/testing/lighthouse/add.png">
 
 ## HTML Testing
+Using the [HTML Validator](https://validator.w3.org/), I tested each page by copying the page source into the validator and have received no errros
+
+For the home page:
+
+<img src="./media/testing/html/home.png">
+
+For the plants page:
+
+<img src="./media/testing/html/plants.png">
+
+For the plant details page:
+
+<img src="./media/testing/html/plant-detail.png">
+
+For the basket page:
+
+<img src="./media/testing/html/basket.png">
+
+For the checkout page:
+
+<img src="./media/testing/html/checkout.png">
+
+For the checkout success page:
+
+<img src="./media/testing/html/checkout-success.png">
+
+For the profile page:
+
+<img src="./media/testing/html/profile.png">
+
+For the tracker page:
+
+<img src="./media/testing/html/tracker.png">
+
+For the tracker details page:
+
+<img src="./media/testing/html/tracker-details.png">
+
+For the add/edit plant form:
+
+<img src="./media/testing/html/add.png">
 
 
 ## CSS Testing
