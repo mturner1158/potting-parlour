@@ -16,7 +16,11 @@ class Profile(models.Model):
     default_street_address2 = models.CharField(max_length=80, blank=True)
     default_town_or_city = models.CharField(max_length=40, blank=True)
     default_postcode = models.CharField(max_length=20, blank=True)
-    default_country = models.CharField(max_length=60, blank=True, default="United Kingdom")
+    default_country = models.CharField(
+        max_length=60,
+        blank=True,
+        default="United Kingdom"
+        )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -34,4 +38,3 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
     instance.profile.save()
-

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import Plant, Category
 
-# Register your models here.
+
 @admin.register(Plant)
 class PlantAdmin(admin.ModelAdmin):
     list_display = ("name", "category", "price", "is_active")

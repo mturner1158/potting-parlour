@@ -10,9 +10,21 @@ from plants.models import Plant
 class UserPlant(models.Model):
     """Plants bought by a user"""
 
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="owned_plants")
-    plant = models.ForeignKey(Plant, on_delete=models.PROTECT, related_name="owners")
-    bought_plant = models.ForeignKey(Order, on_delete=models.PROTECT, related_name="tracked_plants")
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="owned_plants"
+        )
+    plant = models.ForeignKey(
+        Plant,
+        on_delete=models.PROTECT,
+        related_name="owners"
+        )
+    bought_plant = models.ForeignKey(
+        Order,
+        on_delete=models.PROTECT,
+        related_name="tracked_plants"
+        )
     nickname = models.CharField(max_length=100, blank=True)
     last_watered = models.DateField(null=True, blank=True)
     notes = models.TextField(blank=True)

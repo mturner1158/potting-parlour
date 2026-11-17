@@ -22,5 +22,8 @@ class OrderAdmin(admin.ModelAdmin):
         "order_total", "grand_total", "original_basket", "stripe_pid",
         "plants_added_to_tracker",
     )
-    list_display = ("order_number", "order_date", "full_name", "order_total", "delivery_cost", "grand_total")
+    list_display = ("order_number", "order_date",
+                    "full_name", "order_total",
+                    "delivery_cost", "grand_total"
+                    )
     ordering = ("-order_date",)

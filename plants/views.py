@@ -16,10 +16,8 @@ SORT_OPTIONS = {
 }
 
 
-
 def all_plants(request):
     """ A view for all plants, including sorting and a search query """
-
     # only superusres can see inactive plants
     if request.user.is_superuser:
         plants = Plant.objects.all()
@@ -64,7 +62,8 @@ def all_plants(request):
         "categories": Category.objects.all(),
         "light_choices": Plant.Light.choices,
         "difficulty_choices": Plant.Difficulty.choices,
-        "sort_options": [(key, label) for key, (label, _) in SORT_OPTIONS.items()],
+        "sort_options":
+        [(key, label) for key, (label, _) in SORT_OPTIONS.items()],
         "query": query,
         "selected_categories": selected_categories,
         "light": light,
@@ -78,9 +77,9 @@ def all_plants(request):
 
     return render(request, template, context)
 
+
 def plant_detail(request, slug):
     plant = get_object_or_404(Plant, slug=slug, is_active=True)
-
 
     template = "plants/plants_detail.html"
     context = {
@@ -103,7 +102,10 @@ def add_plant(request):
             plant = form.save()
             messages.success(request, "Plant added!")
             return redirect("plant_detail", slug=plant.slug)
-        messages.error(request, "Failed to add the plant. Please check the form is valid.")
+        messages.error(
+            request,
+            "Failed to add the plant. Please check the form is valid."
+            )
     else:
         form = PlantForm()
 
@@ -130,7 +132,10 @@ def edit_plant(request, plant_id):
             form.save()
             messages.success(request, "Plant updated!")
             return redirect("plant_detail", slug=plant.slug)
-        messages.error(request, "Failed to update the plant. Please check the form is valid.")
+        messages.error(
+            request,
+            "Failed to update the plant. Please check the form is valid."
+            )
     else:
         form = PlantForm(instance=plant)
 

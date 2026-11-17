@@ -24,7 +24,8 @@ class StripeWH_Handler:
         )
 
     def handle_payment_intent_payment_failed(self, event):
-        return HttpResponse(content=f"Webhook received: {event.type}", status=200)
+        return HttpResponse(
+            content=f"Webhook received: {event.type}", status=200)
 
     def handle_payment_intent_succeeded(self, event):
         intent = event.data.object
@@ -36,17 +37,22 @@ class StripeWH_Handler:
             if Order.objects.filter(stripe_pid=pid).exists():
                 add_order_to_tracker(order)
                 return HttpResponse(
-                    content=f"Webhook received: {event.type} | SUCCESS: Order already in database",
+                    content=(
+                        f"Webhook received: {event.type} | "
+                        "SUCCESS: Order already in database"),
                     status=200,
                 )
             time.sleep(1)
 
         # build the order
-        details = {field: metadata.get(field, "") for field in OrderForm.Meta.fields}
+        details = {field: metadata.get(field, "")
+                   for field in OrderForm.Meta.fields}
         form = OrderForm(details)
         if not form.is_valid():
             return HttpResponse(
-                content=f"Webhook received: {event.type} | ERROR: {form.errors.as_json()}",
+                content=(
+                    f"Webhook received: {event.type} | "
+                    "ERROR: {form.errors.as_json()}"),
                 status=500,
             )
 
@@ -61,7 +67,8 @@ class StripeWH_Handler:
             profile = None
             username = metadata.get("username", "")
             if username:
-                profile = Profile.objects.filter(user__username=username).first()
+                profile = Profile.objects.filter(
+                    user__username=username).first()
                 order.user_profile = profile
             order.save()
 
@@ -84,12 +91,17 @@ class StripeWH_Handler:
             if order and order.pk:
                 order.delete()
             return HttpResponse(
-                content=f"Webhook received: {event.type} | ERROR: {e}", status=500
+                content=(
+                    f"Webhook received: {event.type} | "
+                    "ERROR: {e}"), status=500
             )
 
         add_order_to_tracker(order)
 
         return HttpResponse(
-            content=f"Webhook received: {event.type} | SUCCESS: Created order in webhook",
+            content=(
+                f"Webhook received: {event.type} | "
+                "SUCCESS: Created order in webhook"
+            ),
             status=200,
         )

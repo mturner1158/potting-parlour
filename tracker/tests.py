@@ -18,7 +18,8 @@ class TrackerTests(TestCase):
         self.other = User.objects.create_user("User2", password="pass12345")
         category = Category.objects.create(name="Tropical", slug="tropical")
         self.plant = Plant.objects.create(
-            category=category, name="Monstera", slug="monstera", price=Decimal("10.00")
+            category=category, name="Monstera",
+            slug="monstera", price=Decimal("10.00")
         )
 
     def make_order(self, user, quantity):
@@ -32,7 +33,11 @@ class TrackerTests(TestCase):
             town_or_city="York",
             street_address1="1 High Street",
         )
-        OrderLineItem.objects.create(order=order, plant=self.plant, quantity=quantity)
+        OrderLineItem.objects.create(
+            order=order,
+            plant=self.plant,
+            quantity=quantity
+            )
         return order
 
     def test_one_tracker_entry_per_unit_bought(self):
@@ -58,7 +63,9 @@ class TrackerTests(TestCase):
         add_order_to_tracker(self.make_order(self.user, 1))
         user_plant = UserPlant.objects.get(owner=self.user)
         self.client.login(username="User2", password="pass12345")
-        response = self.client.get(reverse("tracker_details", args=[user_plant.id]))
+        response = self.client.get(
+            reverse("tracker_details", args=[user_plant.id])
+            )
         self.assertEqual(response.status_code, 404)
 
     def test_water_now_updates_last_watered(self):

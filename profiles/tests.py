@@ -33,11 +33,15 @@ class ProfileTests(TestCase):
     def test_owner_can_see_own_order(self):
         "Users can see their own order history"
         self.client.login(username="User1", password="pass12345")
-        response = self.client.get(reverse("order_history", args=[self.order.order_number]))
+        response = self.client.get(
+            reverse("order_history", args=[self.order.order_number]))
         self.assertEqual(response.status_code, 200)
 
     def test_other_user_gets_404_for_order(self):
         """Users cannot see others orders"""
         self.client.login(username="User2", password="pass12345")
-        response = self.client.get(reverse("order_history", args=[self.order.order_number]))
+        response = self.client.get(reverse(
+            "order_history",
+            args=[self.order.order_number])
+            )
         self.assertEqual(response.status_code, 404)

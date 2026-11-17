@@ -19,7 +19,10 @@ from .forms import OrderForm
 
 @require_POST
 def cache_checkout_data(request):
-    """Attach the basket and delivery details to the payment before it is confirmed."""
+    """
+    Attach the basket and delivery details
+    to the payment before it is confirmed.
+    """
     try:
         pid = request.POST.get("client_secret", "").split("_secret")[0]
 
@@ -27,7 +30,8 @@ def cache_checkout_data(request):
             "project": "potting_parlour",
             "basket": json.dumps(request.session.get("basket", {})),
             "save_info": request.POST.get("save_info", "0"),
-            "username": request.user.username if request.user.is_authenticated else "",
+            "username":
+            request.user.username if request.user.is_authenticated else "",
         }
         for field in OrderForm.Meta.fields:
             metadata[field] = request.POST.get(field, "")
@@ -63,36 +67,55 @@ def checkout(request):
             existing = Order.objects.filter(stripe_pid=pid).first()
             if existing:
                 request.session["last_order_number"] = order.order_number
-                return redirect("checkout_success", order_number=existing.order_number)
+                return redirect(
+                    "checkout_success",
+                    order_number=existing.order_number
+                    )
 
             # checks if payment went through
             intent = client.v1.payment_intents.retrieve(pid)
             if intent.status == "succeeded" and intent.amount == stripe_total:
                 order = order_form.save(commit=False)
                 order.stripe_pid = pid
-                order.original_basket = json.dumps(request.session.get("basket", {}))
+                order.original_basket = json.dumps(
+                    request.session.get("basket", {})
+                    )
 
                 if request.user.is_authenticated:
-                    profile, _ = Profile.objects.get_or_create(user=request.user)
+                    profile, _ = Profile.objects.get_or_create(
+                        user=request.user
+                        )
                     order.user_profile = profile
                 order.save()
 
                 for item in current_basket["basket_items"]:
                     OrderLineItem.objects.create(
-                        order=order, plant=item["plant"], quantity=item["quantity"]
+                        order=order,
+                        plant=item["plant"],
+                        quantity=item["quantity"]
                     )
 
                 add_order_to_tracker(order)
 
                 request.session["save_info"] = "save-info" in request.POST
                 request.session["last_order_number"] = order.order_number
-                return redirect("checkout_success", order_number=order.order_number)
+                return redirect("checkout_success",
+                                order_number=order.order_number)
 
-            messages.error(request, "We couldn't confirm your payment. Please try again.")
+            messages.error(
+                request,
+                (
+                    "We couldn't confirm your payment. "
+                    "Please try again."
+                ),
+            )
         else:
             messages.error(
                 request,
-                "There was an error with your form. Please double check your information.",
+                (
+                    "There was an error with your form."
+                    "Please double check your information."
+                ),
             )
     else:
         initial = {}
@@ -118,7 +141,8 @@ def checkout(request):
         params={
             "amount": stripe_total,
             "currency": settings.STRIPE_CURRENCY,
-            "automatic_payment_methods": {"enabled": True, "allow_redirects": "never"},
+            "automatic_payment_methods":
+            {"enabled": True, "allow_redirects": "never"},
         }
     )
 
@@ -156,7 +180,10 @@ def checkout_success(request, order_number):
         profile.default_country = order.country
         profile.save()
 
-    messages.success(request, f"Order placed! Your order number is {order.order_number}.")
+    messages.success(request,
+                     (f"Order placed! Your order number"
+                      " is {order.order_number}.")
+                     )
 
     for key in ("basket", "save_info"):
         request.session.pop(key, None)

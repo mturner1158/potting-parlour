@@ -18,7 +18,9 @@ class BasketTests(TestCase):
             reverse("add_to_basket", args=[self.plant.id]),
             {"quantity": 2, "redirect_url": "/"},
         )
-        self.assertEqual(self.client.session["basket"], {str(self.plant.id): 2})
+        self.assertEqual(
+            self.client.session["basket"], {str(self.plant.id): 2}
+            )
 
     def test_remove_from_basket(self):
         """Remove a plant from the basket"""
@@ -40,5 +42,7 @@ class BasketTests(TestCase):
 
     def test_add_to_basket_rejects_get(self):
         """Basket does not change when someone visits URL"""
-        response = self.client.get(reverse("add_to_basket", args=[self.plant.id]))
+        response = self.client.get(reverse(
+            "add_to_basket",
+            args=[self.plant.id]))
         self.assertEqual(response.status_code, 405)

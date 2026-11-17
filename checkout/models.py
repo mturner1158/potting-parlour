@@ -55,7 +55,10 @@ class Order(models.Model):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        """Recalculate totals each time a line item is added, changed or removed."""
+        """
+        Recalculate totals each time a line item is added,
+        changed or removed.
+        """
         self.order_total = self.lineitems.aggregate(Sum("lineitem_total"))[
             "lineitem_total__sum"
         ] or Decimal("0.00")
@@ -71,7 +74,6 @@ class Order(models.Model):
 
         self.grand_total = self.order_total + self.delivery_cost
         self.save()
-
 
     def save(self, *args, **kwargs):
         """Set the order number on first save."""
@@ -102,4 +104,7 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f"{self.plant.name} x {self.quantity} on order {self.order.order_number}"
+        return (
+            f"{self.plant.name} x {self.quantity}"
+            " on order {self.order.order_number}"
+        )

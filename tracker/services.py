@@ -12,7 +12,11 @@ def add_order_to_tracker(order):
     tracked = []
     for item in order.lineitems.select_related("plant"):
         for _ in range(item.quantity):
-            tracked.append(UserPlant(owner=owner, plant=item.plant, bought_plant=order))
+            tracked.append(UserPlant(
+                owner=owner,
+                plant=item.plant,
+                bought_plant=order)
+                )
     UserPlant.objects.bulk_create(tracked)
 
     order.plants_added_to_tracker = True

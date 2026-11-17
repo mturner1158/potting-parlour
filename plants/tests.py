@@ -8,7 +8,10 @@ from .models import Category, Plant
 class PlantTests(TestCase):
     def setUp(self):
         """Create category and plant"""
-        self.category = Category.objects.create(name="Tropical", slug="tropical")
+        self.category = Category.objects.create(
+            name="Tropical",
+            slug="tropical"
+            )
         self.plant = Plant.objects.create(
             category=self.category,
             name="Monstera",
@@ -37,7 +40,9 @@ class PlantTests(TestCase):
 
     def test_plant_detail_loads(self):
         "plant detail page loads"
-        response = self.client.get(reverse("plant_detail", args=[self.plant.slug]))
+        response = self.client.get(
+            reverse("plant_detail", args=[self.plant.slug])
+            )
         self.assertEqual(response.status_code, 200)
 
     def test_normal_user_cannot_add_plant(self):

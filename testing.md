@@ -11,7 +11,7 @@ Please use the links below to navigate to a specific section:
 * [CSS Testing](#css-testing)
 * [JavaScript Testing](#javascript-tetsting)
 * [Python Testing](#python-testing)
-* [Django Testing](#django-testcase)
+* [Django Testing](#django-testing)
 
 ## User Story Testing
 Testing was carried out against the deployed Heroku site to confirm the deployed version matches the tested development version. Each user story from the User Experience section is tested individually below.
@@ -215,7 +215,9 @@ For quantity_changes.html:
 <img src="./media/testing/js/quantity-changes.png">
 
 ## Python Testing
+Using the package [pycodestyle](https://pycodestyle.pycqa.org/en/latest/intro.html#example-usage-and-output), I have ensured any python scripts are written to Pep8 standard using the following command:
 
+`$ pycodestyle --exclude=.git,__pycache__,.venv,migrations,static,staticfiles,media .`
 
 ## Django Testing
 I used the Django testing framework for the applications in my project.

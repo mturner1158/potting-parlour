@@ -40,9 +40,13 @@ class PlantForm(forms.ModelForm):
     def clean_name(self):
         """Ensure slugs are unique"""
         name = self.cleaned_data["name"].strip()
-        clash = Plant.objects.filter(slug=slugify(name)).exclude(pk=self.instance.pk)
+        clash = Plant.objects.filter(
+            slug=slugify(name)).exclude(pk=self.instance.pk
+                                        )
         if clash.exists():
-            raise forms.ValidationError("A plant with this name already exists.")
+            raise forms.ValidationError(
+                "A plant with this name already exists."
+                )
         return name
 
     def clean_price(self):

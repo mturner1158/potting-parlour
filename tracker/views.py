@@ -11,15 +11,17 @@ from .forms import UserPlantForm
 def view_tracker(request):
     """Shows tracker for plants the user has bought"""
 
-    user_plants = request.user.owned_plants.select_related("plant", "bought_plant")
+    user_plants = request.user.owned_plants.select_related(
+        "plant", "bought_plant"
+        )
     total_plants = user_plants.count()
 
     template = "tracker/tracker.html"
 
     context = {
-    "user_plants": user_plants,
-    "total_plants": total_plants,
-    "needs_water_count": sum(1 for p in user_plants if p.needs_water),
+        "user_plants": user_plants,
+        "total_plants": total_plants,
+        "needs_water_count": sum(1 for p in user_plants if p.needs_water),
     }
 
     return render(request, template, context)
@@ -38,12 +40,14 @@ def tracker_details(request, plant_id):
         form = UserPlantForm(request.POST, instance=user_plant)
         if form.is_valid():
             form.save()
-            messages.success(request, f'{user_plant.display_name} details have been updated')
+            messages.success(
+                request,
+                f'{user_plant.display_name} details have been updated'
+                )
             return redirect("tracker_details", plant_id=user_plant.id)
         messages.error(request, "Failed to update. Please review the form")
     else:
-          form = UserPlantForm(instance=user_plant)
-
+        form = UserPlantForm(instance=user_plant)
 
     template = "tracker/tracker_details.html"
 
