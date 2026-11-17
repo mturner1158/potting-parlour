@@ -159,7 +159,22 @@ This page shows the tracking history of a specific plant for a logged in user.
 ## Frameworks and Languages
 This section highlights all the languages and frameworks used in this project.
 
-[list frameworks and languages used in project]
+The following languages were used:
+
+* HTML
+* CSS
+* JavaScript
+* Python
+
+The following frameworks were used:
+
+* Django Framework
+* Bootstrap
+* Google fonts
+* Font Awesome
+* Stripe payment intents and web parts
+
+The application is deployed using Heroku with media stored in an AWS S3 bucket.
 
 ## Data Model
 In this project, my application will utilise a PostgreSQL database provided by the Code Institute. I have created the following tables and provided a graphical representation of how they are connected.
