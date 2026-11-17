@@ -1,6 +1,8 @@
 # Project 4: Potting Parlour
 Potting Parlour is an e-commerce platform which allows users to buy plants and track key activities such as watering, light exposure, and owned plants.
 
+<img src="./media/potting-parlour.png">
+
 You can access my site here: [Potting Parlour](https://potting-parlour-1a8970d57173.herokuapp.com/)
 
 ## Table of Contents
@@ -8,7 +10,7 @@ You can access my site here: [Potting Parlour](https://potting-parlour-1a8970d57
 - [Project Goals](#project-goals)
 - [User Experience](#user-experience)
 - [Design](#design)
-- [Frameworks & Languages](#frameworks--languages)
+- [Frameworks & Languages](#frameworks-and-languages)
 - [Data Model](#data-model)
 - [Security](#security)
 - [Features](#features)
@@ -16,7 +18,7 @@ You can access my site here: [Potting Parlour](https://potting-parlour-1a8970d57
 - [Bugs](#bugs)
 - [Deployment](#deployment)
 - [Code from External Sources](#code-from-external-sources)
-- [Credits & Disclaimer](#credits-and-disclaimer)
+- [Credits & Disclaimer](#credits-and-disclaimers)
 
 ## Project Goals
 This web application will allow users to browse a shop selling various plants, purchase a plant and track activities relating to the plant once it has been purchased. A user can sign up to purchase plants and track additional activities, whilst store owners can add, edit and remove any listings on the site.
@@ -29,7 +31,7 @@ Users have the following goals:
 * Track activities related to their purchases
 
 ### Site Goals
-Site maners have the following goals:
+Site managers have the following goals:
 * Add, edit or remove plants for sale
 
 ## User Experience
@@ -38,7 +40,7 @@ This section shows the considerations for each type of user that would use the w
 ### Target Audience
 The target audience for this site are users who want to purchase plants and track the activities to take care of them.
 
-### Expectactions
+### Expectations
 Users of the site can expect:
 * Easy to use navigation
 * Clear layout
@@ -66,7 +68,7 @@ The colour theme of this site is as follows:
 |Dark green|`#2F4A3A`|Primary colour|
 |Deep forest green|`#243B2D`|Hover colour|
 |Sage green|`#5C7A66`|Secondary green for accents where necessary|
-|Pale pink|`#F4DDD9`|Primarily backgrounds or contract|
+|Pale pink|`#F4DDD9`|Primarily backgrounds or contrast|
 |Dusty pink|`#E8C4BE`|Secondary pink for hovers|
 |Tan|`#C9B08A`|Second background colour |
 |Sand|`#EADFCB`|Secondary tan|
@@ -78,6 +80,8 @@ The colour theme of this site is as follows:
 |Amber|`#D9962B`|Warning messages|
 |Brick red|`#C0443A`|Error messages|
 |Steel blue|`#4A7C9B`|Infomation|
+
+Using this [contrast evaluator](https://coolors.co/contrast-checker/3d3d3c-faf9f6), the background colour and text colour have a contrast score of 7.49 which is rated very good.
 
 There are two fonts used through this site:
 
@@ -94,10 +98,10 @@ The site will have the following pages:
 * A checkout page
 * A checkout confirmation
 * An order history
-* A tracking dashbaord
+* A tracking dashboard
 * A tracking details page for a specific plant
 
-There will also be notifcations to reassure users an action has happened or they are notified of a blocked action.
+There will also be notifications to reassure users an action has happened or they are notified of a blocked action.
 
 ### Wireframes
 This section shows the wireframes for each page created in this web application across mobile, tablet and desktop screens.
