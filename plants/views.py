@@ -19,7 +19,13 @@ SORT_OPTIONS = {
 
 def all_plants(request):
     """ A view for all plants, including sorting and a search query """
-    plants = Plant.objects.all()
+
+    # only superusres can see inactive plants
+    if request.user.is_superuser:
+        plants = Plant.objects.all()
+    else:
+        plants = Plant.objects.filter(is_active=True)
+
     query = request.GET.get("q", "").strip()
     selected_categories = [c for c in request.GET.getlist("category") if c]
     light = request.GET.get("light", "")

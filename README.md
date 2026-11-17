@@ -285,6 +285,7 @@ The following bugs occured during the design of this site:
 10. Plants not showing for users in the tracker - context was not rendering properly in the view leading to Django not picking up the data
 11. Completing an order auntenticated made the view 404 - last_order_numer variable was not being set in the checkout but being called in checkout success
 12. The basket page was not responsive - I had a positon:absolute tab in my css which was causing the rror and had to be replaced with position:relative
+13. Inactive plants were showing in the view - I had missed a filter when creating the plant object in my view
 
 ## Deployment
 For the version control, deployment, file storage and hosting of this site I have used GitHub, AWS S3 and Heroku.

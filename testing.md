@@ -155,7 +155,7 @@ For the add/edit plant form:
 <img src="./media/testing/lighthouse/add.png">
 
 ## HTML Testing
-Using the [HTML Validator](https://validator.w3.org/), I tested each page by copying the page source into the validator and have received no errros
+Using the [HTML Validator](https://validator.w3.org/), I tested each page by copying the page source into the validator and have received no errors.
 
 For the home page:
 
@@ -210,7 +210,7 @@ For stripe_elements.js:
 
 <img src="./media/testing/js/stripe-elements.png">
 
-For quantity_changes.js:
+For quantity_changes.html:
 
 <img src="./media/testing/js/quantity-changes.png">
 
@@ -218,3 +218,62 @@ For quantity_changes.js:
 
 
 ## Django Testing
+I used the Django testing framework for the applications in my project.
+
+### Basket Testing
+I conducted 4 tests for the basket app:
+
+1. A plant can be added to a basket
+2. A plant can be removed from a basket
+3. The basket total is calcualted correctly
+4. You cannot add to a basket just by visiting the URL
+
+<img src="./media/testing/django/basket.png">
+
+### Checkout Testing
+I conducted 4 tests on the checkout app:
+
+1. Sucessful orders show a success page for all users
+2. Unauthenticated users cannot see order history
+3. A user trying to view another users order will receive a 404 error
+4. An authenticated user can see their own orders
+
+<img src="./media/testing/django/checkout.png">
+
+### Core Testing
+I conducted 1 test on the core app:
+
+1. The home page loads
+
+<img src="./media/testing/django/home.png">
+
+### Plants Testing
+I conducted 4 tests on the plant app:
+
+1. The all plants page loads
+2. Plants marked as inactive are not shown on the pages for standard users and guests
+3. The plant details page loads
+4. Standard users and guests cannot edit plants on the site
+
+<img src="./media/testing/django/plants.png">
+
+### Profiles Testing
+I conducted 4 tests on the profiles app:
+
+1. When an account is created, a record is created in the profiles app
+2. Users need to be authenticated to access the profiles page
+3. Users can see their own order history
+4. Users cannot see other users order history
+
+<img src="./media/testing/django/profiles.png">
+
+### Tracker Testing
+I conducted 5 tests on the tracker app:
+
+1. One entry to the tracker model is created per item bought, even when multiple of the same plant is bought
+2. A guest users order does not create entries in the tracker
+3. A user needs to be logged in to access the tracking dashboard
+4. A user cannot see another users tracker
+5. Using the water now button creates a record in the Watering Log model
+
+<img src="./media/testing/django/tracker.png">
