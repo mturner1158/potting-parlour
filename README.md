@@ -219,6 +219,9 @@ This section outlines the measures taken to keep user data, payments and site co
 * Safe deletion: plants that have been purchased cannot be deleted and are marked inactive instead. This protects order history and data integrity.
 * The PostgreSQL database and AWS S3 bucket are accessed by dedicated credentials. The S3 IAM user is limited to the project bucket only.
 
+### Update: Secret Key Remediation
+In an early commit, the Django default secret key was committed but before this was deployed using Heroku this was rotated and secured in the `env.py` file  which was included in a `.gitignore` and congig vars in Heroku, meaning there is no security impact due to the key being retired.
+
 ## Features
 This section outlines key features on each page.
 
@@ -470,14 +473,24 @@ Now you have the .csv file, you can open this in a text editor to view your AWS 
 ### Setting up Stripe
 Stripe is used for the payments on this site. You can set up your own stripe account and connect to the project using the following:
 
-1. Set up a [stripe account](https://stripe.com/gb) and log in
-2. From the dashboard you should be able to see your public and secret stripe keys. These need to be copied into your env.py file
-3. To get your webhook key, we have to use the terminal in our editor.
-4. Install the Stripe Node library using `pip install stripe`
-5. Once installed you need to login to your strip account using `stripe login`
-6. Once logged in, you need to run `stripe listen --forward-thin-to localhost:4242/webhook --thin-events "*"`
-7. This should output your webhook secret in the following format: `export STRIPE_WEBHOOK_SECRET=whsec_...`
-8. Once this is set up, you should be able to view your events in the stripe workbench which can be found at the bottom of the page or by searching in the search bar
+#### API keys
+1. Create a [Stripe account](https://stripe.com/gb) and log in.
+2. In the dashboard, copy the publishable and secret keys.
+3. Add them to `env.py` or Heroku config vars locally (STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY)
+
+#### Webhooks: production
+1. In the dashboard, open Webhooks > Add endpoint.
+2. Select create destination
+3. Select the events payment_intent.succeeded and payment_intent.payment_failed.
+4. Set the endpoint URL to `https://<your-app>.herokuapp.com/checkout/wh/`.
+4. After saving, copy the endpoint's signing secret and set it as the `STRIPE_WH_SECRET` config var on Heroku.
+5. Test mode and live mode have separate keys and separate endpoints. Repeat these steps in live mode before taking real payments.
+
+#### Verifying the setup
+1. Make a test purchase with card `4242 4242 4242 4242` (any future expiry, any CVC).
+   The order should appear and the success page should show its order number.
+2. Use card `4000 0000 0000 0002` to check a declined payment creates no order.
+3. In the webhooks menu, open the endpoint and check recent deliveries show `200`. You can resend an event from there to confirm that repeated delivery doesn't create a second order.
 
 ### Deploying to Heroku
 The live version of this site is hosted using Heroku. To deploy your own version of the application, you need to use the following steps:
