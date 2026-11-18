@@ -209,7 +209,7 @@ This section outlines the measures taken to keep user data, payments and site co
 * Only the order number, delivery details and Stripe payment intent ID (PID) are stored in the database.
 
 ### Secrets and Environment Variables
-* The secret key, database URL, Stripe keys and AWS keys are stored in `env.py` locally and in Heroku Config Vars in production.
+* The secret key, database key, Stripe keys and AWS keys are stored in `env.py` locally and in Heroku Config Vars in production.
 * `env.py` is listed in `.gitignore` so no credentials are committed to the repository.
 * `DEBUG` is set to `False` in production, and `ALLOWED_HOSTS` is limited to the deployed domain and `.herokuapp.com`.
 
@@ -485,7 +485,7 @@ The live version of this site is hosted using Heroku. To deploy your own version
 1. Set up a Heroku account and log in
 2. Select 'New' in the top right and create new app
 3. Name your app and choose the correct region before selecting create app
-4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_URL, STRIPE KEYS, AWS KEYS and any other unique variables you have included in your project
+4. Edit the config vars section within the settings tab with your unique SECRET_KEY, DATABASE_KEY, STRIPE KEYS, AWS KEYS and any other unique variables you have included in your project
 5. In the deploy tab, choose GitHub as your deployment method
 6. Choose the correct repository and ensure the correct branch is selected (usually main)
 7. Use the 'deploy branch' button in the manual deployments section and let this run. You can also set this to automatic deployment so anytime you push to main in your repository it automatically deploys the most recent commit

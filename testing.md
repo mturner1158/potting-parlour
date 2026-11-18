@@ -233,12 +233,18 @@ I conducted 4 tests for the basket app:
 <img src="./media/testing/django/basket.png">
 
 ### Checkout Testing
-I conducted 4 tests on the checkout app:
+I conducted 10 tests on the checkout app:
 
 1. Successful orders show a success page for all users
 2. Unauthenticated users cannot see order history
 3. A user trying to view another users order will receive a 404 error
 4. An authenticated user can see their own orders
+5. A successful payment creates exactly one order
+6. A declined payment does not create an order
+7. If an order already exists for a payment, the checkout view redirects to that order without crashing or creating a duplicate
+8. If an order already exists when a payment webhook arrives, the webhook returns a 200 response without crashing
+9. If the webhook arrives before the checkout form is submitted, the webhook creates the order
+10. If the same webhook is delivered twice, only one order is created
 
 <img src="./media/testing/django/checkout.png">
 
