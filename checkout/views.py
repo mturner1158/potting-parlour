@@ -3,6 +3,7 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse, Http404
 from django.views.decorators.http import require_POST
+from django.db import IntegrityError
 
 from basket.contexts import basket_contents
 from profiles.models import Profile
@@ -86,7 +87,13 @@ def checkout(request):
                         user=request.user
                         )
                     order.user_profile = profile
-                order.save()
+                try:
+                    order.save()
+                except IntegrityError:
+                    existing = Order.objects.get(stripe_pid=pid)
+                    request.session["last_order_number"] = existing.order_number
+                    return redirect("checkout_success",
+                                    order_number=existing.order_number)
 
                 for item in current_basket["basket_items"]:
                     OrderLineItem.objects.create(
