@@ -104,10 +104,12 @@ ACCOUNT_SIGNUP_FIELDS = ["email*", "email2*",
                          "username*", "password1*",
                          "password2*"
                          ]
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases
@@ -220,12 +222,3 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
-
-# Email
-# https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
-
-MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
-}

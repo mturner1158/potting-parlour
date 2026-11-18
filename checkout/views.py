@@ -66,7 +66,7 @@ def checkout(request):
             # checks if payment is already made for the order
             existing = Order.objects.filter(stripe_pid=pid).first()
             if existing:
-                request.session["last_order_number"] = order.order_number
+                request.session["last_order_number"] = existing.order_number
                 return redirect(
                     "checkout_success",
                     order_number=existing.order_number
@@ -180,10 +180,11 @@ def checkout_success(request, order_number):
         profile.default_country = order.country
         profile.save()
 
-    messages.success(request,
-                     (f"Order placed! Your order number"
-                      " is {order.order_number}.")
-                     )
+    messages.success(
+                    request,
+                    "Order placed! Your order number "
+                    f"is {order.order_number}.",
+                )
 
     for key in ("basket", "save_info"):
         request.session.pop(key, None)

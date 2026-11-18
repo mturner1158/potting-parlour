@@ -34,7 +34,8 @@ class StripeWH_Handler:
 
         # wait 5 seconds for order to be created
         for _ in range(5):
-            if Order.objects.filter(stripe_pid=pid).exists():
+            order = Order.objects.filter(stripe_pid=pid).first()
+            if order:
                 add_order_to_tracker(order)
                 return HttpResponse(
                     content=(
@@ -52,7 +53,7 @@ class StripeWH_Handler:
             return HttpResponse(
                 content=(
                     f"Webhook received: {event.type} | "
-                    "ERROR: {form.errors.as_json()}"),
+                    f"ERROR: {form.errors.as_json()}"),
                 status=500,
             )
 
@@ -93,7 +94,7 @@ class StripeWH_Handler:
             return HttpResponse(
                 content=(
                     f"Webhook received: {event.type} | "
-                    "ERROR: {e}"), status=500
+                    f"ERROR: {e}"), status=500
             )
 
         add_order_to_tracker(order)
