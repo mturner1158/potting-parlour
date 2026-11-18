@@ -24,7 +24,7 @@ def add_to_basket(request, plant_id):
 
     redirect_url = request.POST.get('redirect_url', '')
 
-    if quantity < 1:
+    if not 1 <= quantity <= 99:
         messages.error(request, 'Please choose a valid quantity.')
         return redirect(redirect_url)
 
